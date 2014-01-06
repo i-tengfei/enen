@@ -16,6 +16,7 @@ var config = {
 		type: 'development',
 		port: 3000,
 		db: 'mongodb://username:password@localhost:27017/blog-development',
+		view: 'enen',
 
 		email : email
 
@@ -28,6 +29,7 @@ var config = {
 		type: 'production',
 		port: 17001,
 		db: 'mongodb://username:password@localhost:27017/blog-production',
+		view: 'enen',
 
 		email : email
 

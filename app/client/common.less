@@ -11,8 +11,6 @@ body{
     margin: 0;
     font-size: 12px;
     color: @color2;
-    // color: #F14E42;
-    // color: #1BBBFF;
 }
 canvas{
     display: block;
@@ -31,16 +29,12 @@ ul, ol, li, h3, p{
 }
 #header{
     padding: 15px 0;
-    height: 450px;
+    height: 30px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
-    // background: #00B2EC;
-    @media ( min-height: 740px ){
-        padding: 75px 0;
-    }
 }
 #footer{
     height: 100px;
@@ -73,7 +67,6 @@ ol li{
 
 .central{
     position: relative;
-    // padding: 0 10px;
     margin: 0 auto;
 
     @media ( min-width: 1240px ){
@@ -93,52 +86,19 @@ ol li{
 
 #content{
     width: 100%;
-    margin-top: 480px;
-    @media ( min-height: 740px ){
-        margin-top: 600px;
-    }
+    margin-top: 60px;
 }
 
-#logo{
-    font-size: 50px;
-    text-align: center;
-    height: 60px;
-    line-height: 60px;
-}
 #base-menu{
-    font-family: MalubeiWeb;
-    font-size: 18px;
-    overflow: hidden;
-    margin: 15px 0;
-
+    font-size: 14px;
+    line-height: 30px;
     li{
         float: left;
-        padding: 0 15px;
-
         a{
             display: block;
+            padding: 0 12px;
         }
     }
-}
-#terminal{
-    width: 960px;
-    height: 260px;
-    background: @color2;
-    margin: 0 auto;
-    border-radius:2px;
-    .editor{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-    #shell{
-
-    }
-}
-
-
-#terminal .CodeMirror pre{
-    font-family: MalubeiWeb;
 }
 
 ::-webkit-scrollbar {
