@@ -1,0 +1,31 @@
+{
+  "name": "enen",
+  "description": "",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~3.4.7",
+    "mongoose": "~3.8.3",
+    "jade": "~1.0.0",
+    "tracer": "~0.6.1",
+    "connect-mongo": "~0.4.0"
+  },
+  "scripts": {
+    "start": "node app/server/app"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://mit-license.org"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-less": "~0.8.3",
+    "grunt-contrib-cssmin": "~0.7.0"
+  }
+}
