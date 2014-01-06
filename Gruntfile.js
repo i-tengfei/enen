@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
     } );
 
     var apps = fs.readdirSync( 'app/client' ).filter( function( x ){
-        return x !== 'config.js'
+        return fs.statSync( 'app/client/' + x ).isDirectory( );
     } );
 
     var config = {
@@ -36,14 +36,7 @@ module.exports = function( grunt ) {
     var requirejsTask = {},
         uglifyTask = {},
         lessTask = {},
-        cssminTask = {},
-        cleanTask = {};
-
-
-    cleanTask.files = apps.map( function( x ){
-        return 'app/public/' + x + '.*'
-    } );
-    cleanTask.files.push( 'app/public/require.js' );
+        cssminTask = {};
     
 
     apps.forEach( function( x ){
@@ -53,27 +46,27 @@ module.exports = function( grunt ) {
                 baseUrl: './',
                 name: 'app/client/' + x + '/main',
                 mainConfigFile: 'app/client/config.js',
-                out: 'app/public/' + x + '.js',
+                out: 'app/dist/' + x + '.js',
                 optimize: 'none'
             }
         };
 
 
         uglifyTask[ x ] = {
-            src: 'app/public/' + x + '.js',
-            dest: 'app/public/' + x + '.js'
+            src: 'app/dist/' + x + '.js',
+            dest: 'app/dist/' + x + '.js'
         };
 
 
         lessTask[ x ] = {
             src: 'app/client/' + x + '/main.less',
-            dest: 'app/public/' + x + '.css'
+            dest: 'app/dist/' + x + '.css'
         };
 
 
         cssminTask[ x ] = {
-            src: 'app/public/' + x + '.css',
-            dest: 'app/public/' + x + '.css'
+            src: 'app/dist/' + x + '.css',
+            dest: 'app/dist/' + x + '.css'
         };
 
     } );
@@ -81,14 +74,18 @@ module.exports = function( grunt ) {
 
     uglifyTask.requirejs = {
         src: 'bower_components/requirejs/require.js',
-        dest: 'app/public/require.js'
+        dest: 'app/dist/require.js'
     };
 
 
 
     grunt.initConfig( {
 
-        clean: cleanTask,
+        clean: {
+            files: [
+                'app/dist'
+            ]
+        },
         requirejs: requirejsTask,
         uglify: uglifyTask,
         less: lessTask,
