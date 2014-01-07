@@ -7,7 +7,7 @@ module.exports = function( ){
 	var app = express( );
 
 	app.set( 'showStackError', true );
-	app.set( 'views', config.base + '/../view' );
+	app.set( 'views', config.base + '/../view/' + config.view );
 	app.set( 'view engine', 'jade' );
 
 	if ( config.type === 'development' ) {
