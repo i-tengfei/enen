@@ -1,4 +1,4 @@
-require( [ 'jquery' ], function ( $ ) {
+require( [ 'jquery', 'markdown' ], function ( $, markdown ) {
 
     console.log( $ );
 
