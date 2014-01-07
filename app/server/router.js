@@ -1,7 +1,8 @@
 module.exports = function ( app ) {
 
-    var path = config.type === 'development' ? '/client/' : '/';
     var markdown = require( '../../bower_components/marked' );
+    
+    var path = config.type === 'development' ? '/client/' + config.view + '/' : '/';
 
     app.get( '/', function( req, res ){
 
