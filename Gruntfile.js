@@ -1,21 +1,12 @@
 'use strict';
 
 var fs = require( 'fs' );
+var view = require( './app/server/config' ).data.production.view;
 
 module.exports = function( grunt ) {
 
-    grunt.registerMultiTask( 'config', 'requirejs config', function( ) {
-        this.target;
-        this.data;
-        var name = this.data.options.name;
-        this.files.forEach( function( x ){
-            var data = grunt.file.read( x.src[ 0 ], { encoding: 'utf8' } );
-            grunt.file.write( x.dest, data + ';require( [\'./app/client/' + name + '/main.js\'] );' );
-        } );
-    } );
-
-    var apps = fs.readdirSync( 'app/client' ).filter( function( x ){
-        return fs.statSync( 'app/client/' + x ).isDirectory( );
+    var apps = fs.readdirSync( 'app/client/' + view ).filter( function( x ){
+        return fs.statSync( 'app/client/' + view + '/' + x ).isDirectory( );
     } );
 
     var config = {
@@ -44,7 +35,7 @@ module.exports = function( grunt ) {
         requirejsTask[ x ] = {
             options: {
                 baseUrl: './',
-                name: 'app/client/' + x + '/main',
+                name: 'app/client/' + view + '/' + x + '/main',
                 mainConfigFile: 'app/client/config.js',
                 out: 'app/dist/' + x + '.js',
                 optimize: 'none'
@@ -59,7 +50,7 @@ module.exports = function( grunt ) {
 
 
         lessTask[ x ] = {
-            src: 'app/client/' + x + '/main.less',
+            src: 'app/client/' + view + '/' + x + '/main.less',
             dest: 'app/dist/' + x + '.css'
         };
 

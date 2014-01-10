@@ -8,7 +8,8 @@ require.config( {
         'codemirror.dialog': 'bower_components/codemirror/addon/dialog/dialog',
         'codemirror.shell': 'bower_components/codemirror/mode/shell/shell',
         'codemirror.markdown': 'bower_components/codemirror/mode/markdown/markdown',
-        'codemirror.vim': 'bower_components/codemirror/keymap/vim'
+        'codemirror.vim': 'bower_components/codemirror/keymap/vim',
+        'markdown': 'bower_components/marked/lib/marked'
     },
     shim: {
         'codemirror': {

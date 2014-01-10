@@ -1,44 +1,58 @@
 var path = require( 'path' );
 
 var email = {
-	hosts : 'smtp.exmail.qq.com',
-	port : '25',
-	name : 'QQ',
-	username : 'service@malubei.com',
-	password : 'xxxxxx',
-	nickname : '昵称'
+    hosts : 'smtp.exmail.qq.com',
+    port : '25',
+    name : 'QQ',
+    username : 'service@xxxxxx.com',
+    password : 'xxxxxx',
+    nickname : '测试'
+};
+
+var auth = {
+    baidu: {
+        clientID: 'abcdefg',
+        clientSecret: 'abcdefg',
+        callbackURL: 'abcdefg'
+    }
 };
 
 var config = {
 
-	development: {
-		
-		type: 'development',
-		port: 3000,
-		db: 'mongodb://username:password@localhost:27017/blog-development',
-		view: 'enen',
+    development: {
+        
+        type: 'development',
+        port: 3000,
+        db: 'mongodb://username:password@localhost:27017/blog-development',
+        view: 'enen',
+        admin: '/admin',
 
-		email : email
+        email: email,
+        auth: auth
 
-	},
+    },
 
-	testing: {},
+    testing: {},
 
-	production: {
+    production: {
 
-		type: 'production',
-		port: 17001,
-		db: 'mongodb://username:password@localhost:27017/blog-production',
-		view: 'enen',
+        type: 'production',
+        port: 17001,
+        db: 'mongodb://username:password@localhost:27017/blog-development',
+        view: 'enen',
+        admin: '/admin',
 
-		email : email
+        email: email,
+        auth: auth
 
-	}
-	
+    }
+    
 };
 
 module.exports = function( type ) {
-	var data = config[ type || process.env.NODE_ENV || 'development' ];
-	data.base = path.normalize( __dirname );
-	return data;
+    var data = config[ type || process.env.NODE_ENV || 'development' ];
+    data.base = path.normalize( __dirname );
+    return data;
 };
+
+module.exports.data = config;

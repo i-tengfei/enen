@@ -2,3 +2,4 @@ node_modules/
 bower_components/
 app/dist
 app/server/config.js
+npm-debug.log
