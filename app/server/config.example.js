@@ -25,6 +25,7 @@ var config = {
         port: 3000,
         db: 'mongodb://username:password@localhost:27017/blog-development',
         view: 'enen',
+        admin: '/admin',
 
         email: email,
         auth: auth
@@ -39,6 +40,7 @@ var config = {
         port: 17001,
         db: 'mongodb://username:password@localhost:27017/blog-development',
         view: 'enen',
+        admin: '/admin',
 
         email: email,
         auth: auth

@@ -167,4 +167,12 @@ module.exports = function ( app ) {
 
     } );
 
+    app.get( config.admin, function( req, res ){
+
+        res.render( 'admin', {
+            path: path + 'admin'
+        } );
+
+    } );
+
 };
