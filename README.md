@@ -1,6 +1,8 @@
 enen
 ====
 
+##开发环境部署##
+
 安装开发环境依赖
 
     npm install -g grunt-cli bower
@@ -20,7 +22,7 @@ enen
 享受它吧！
 
 
-生产环境部署
+##生产环境部署##
 
 修改`NODE_ENV`为`production`
 
