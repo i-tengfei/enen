@@ -20,6 +20,14 @@ module.exports = function ( app ) {
 
     } );
 
+    app.get( '/signup', function( req, res ){
+
+        res.render( 'signup', {
+            path: path + 'signup'
+        } );
+
+    } );
+
     app.get( '/:id', function( req, res ){
 
         res.render( 'article', {
