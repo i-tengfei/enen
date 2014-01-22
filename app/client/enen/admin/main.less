@@ -1,25 +1,21 @@
 @import "../../gallery/common.less";
 @import "../../gallery/markdown.less";
-@import "../../../bower_components/codemirror/lib/codemirror.css";
 
-#body{
-    height: 100%;
-    overflow: hidden;
-}
-#content{
-    height: 100%;
-    overflow: hidden;
-}
-#editor{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 710px;
-}
-#markdown{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    padding: 15px;
-}
+#body,#content{height: 100%;overflow: hidden;}
+
+#editor,#markdown,#save,#cancel{position:absolute;}
+
+#editor,#markdown{top:0;width:50%;word-wrap:break-word;}
+#editor{left:0;right:710px;height:100%;}
+#markdown{bottom:0;right: 0;padding:10px 0;}
+#markdown *{padding:0 10px;}
+
+
+
+#save{left:240px;}
+#cancel{background-color:#95a5a6;left:10px;}
+
+.CodeMirror{height:auto;}
+
+.CodeMirror-scroll{padding:0;margin:0;}
+.CodeMirror-sizer{height:auto!important;min-height:0!important;font:'';}

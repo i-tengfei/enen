@@ -1,3 +1,17 @@
+@import "../../../bower_components/codemirror/lib/codemirror.css";
+
+html{font-family:Georgia, Times New Roman, Times, serif;font-weight:normal;}
 #markdown{
-    width: 680px;
+    border:1px solid #ccc;padding:30px;
+    @color1:#000;
+    @color2:#333;
+    h1{font:2.5em/200% '';-webkit-margin-before:0;color:@color1;border-bottom:1px solid #ddd;}
+    h2{font:2em/200% '';color:@color2;border-bottom:1px solid #eee;}
+    h3{font:1.5em/250% '';-webkit-margin-before:0;color:@color2;}
+    p{font:14px/150% '';color:@color1;}
+    ul,ol{margin:15px 0;padding-left:30px;}
+    li{font:15px/1.7 Helvetica, arial, freesans, clean, sans-serif;color:@color2;}
+    ul li{list-style-type:disc;}
+    ol li{list-style-type:decimal;}
+    table{width:300px;text-align:center;}
 }

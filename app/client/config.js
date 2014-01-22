@@ -8,6 +8,7 @@ require.config( {
         'codemirror.dialog': 'bower_components/codemirror/addon/dialog/dialog',
         'codemirror.shell': 'bower_components/codemirror/mode/shell/shell',
         'codemirror.markdown': 'bower_components/codemirror/mode/markdown/markdown',
+        'codemirror.javascript': 'bower_components/codemirror/mode/javascript/javascript',
         'codemirror.vim': 'bower_components/codemirror/keymap/vim',
         'markdown': 'bower_components/marked/lib/marked'
     },
@@ -24,6 +25,10 @@ require.config( {
             exports: 'CodeMirror'
         },
         'codemirror.markdown': {
+            deps: [ 'codemirror' ],
+            exports: 'CodeMirror'
+        },
+        'codemirror.javascript': {
             deps: [ 'codemirror' ],
             exports: 'CodeMirror'
         },
