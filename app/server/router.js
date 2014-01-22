@@ -1,6 +1,7 @@
-module.exports = function ( app ) {
+var markdown = require( '../../bower_components/marked' ),
+    auth = require( './controllers/auth' );
 
-    var markdown = require( '../../bower_components/marked' );
+module.exports = function ( app ) {
     
     var path = config.type === 'development' ? '/client/' + config.view + '/' : '/';
 
@@ -12,7 +13,7 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( '/login', function( req, res ){
+    app.get( '/login', auth.no, function( req, res ){
 
         res.render( 'login', {
             path: path + 'login'
@@ -20,7 +21,7 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( '/signup', function( req, res ){
+    app.get( '/signup', auth.no, function( req, res ){
 
         res.render( 'signup', {
             path: path + 'signup'
@@ -183,7 +184,7 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( config.admin, function( req, res ){
+    app.get( config.admin, auth.yes, function( req, res ){
 
         res.render( 'admin', {
             path: path + 'admin'

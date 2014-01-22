@@ -1,5 +1,7 @@
 node_modules/
 bower_components/
 app/dist
-app/server/config.js
+app/server/database.development
+app/server/database.production
+cache/
 npm-debug.log

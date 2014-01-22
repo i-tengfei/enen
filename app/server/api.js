@@ -1,7 +1,8 @@
 var Controller = require( './controllers/controller' ),
     user = Controller( 'user' ),
     article = Controller( 'article' ),
-    auth = require( './controllers/auth' );
+    auth = require( './controllers/auth' ),
+    fs = require( 'fs-extra' );
 
 module.exports = function ( app, passport ) {
 
@@ -94,18 +95,28 @@ module.exports = function ( app, passport ) {
     app.get( '/api/article/:page', article.list, function( req, res ){
         res.send( req.result );
     } );
-    // TODO: 权限验证及检测是否作者等等
+    // TODO: 权限验证
     // 增
     app.post( '/api/article', [ auth.yes, article.create ], function( req, res ){
         res.send( req.result );
     } );
     // 删
-    app.del( '/api/article/:id', [ auth.yes, article.load, article.delete ], function( req, res ){
+    app.del( '/api/article/:id', [ auth.yes, article.load, auth.author, article.delete ], function( req, res ){
         res.send( {} );
     } );
     // 改
-    app.put( '/api/article/:id', [ auth.yes, article.load, article.update ], function( req, res ){
+    app.put( '/api/article/:id', [ auth.yes, article.load, auth.author, article.update ], function( req, res ){
         res.send( req.result );
+    } );
+
+    // ========== ========== ======== ========== ========== //
+    // ---------- ---------- | File | ---------- ---------- //
+    // ========== ========== ======== ========== ========== //
+    app.post( '/api/picture', auth.yes, function( req, res ){
+
+        var tmpPath = req.files.picture.path;
+        
+
     } );
 
 };

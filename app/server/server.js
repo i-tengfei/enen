@@ -51,7 +51,8 @@ module.exports = function( ){
 
         app.use( function( err, req, res, next ){
             if ( err.message ) {
-                res.send( err.message, err.stack );
+                // TODO: 不同的错误页面
+                res.send( err.message );
             }
         } );
 
@@ -70,7 +71,7 @@ module.exports = function( ){
                     req.params[ name ] = captures;
                     next( );
                 } else {
-                    next('route');
+                    next( 'route' );
                 }
             }
         }
