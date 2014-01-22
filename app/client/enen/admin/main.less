@@ -1,24 +1,38 @@
 @import "../../gallery/common.less";
 @import "../../gallery/markdown.less";
 
-#body{
-    height: 100%;
-    overflow: hidden;
+#body{height: 100%;overflow: hidden;}
+#content{height: 100%;overflow: hidden;}
+#editor{position: absolute;top: 0;left: 0;right: 710px;}
+#markdown{position: absolute;top: 0;bottom: 0;right: 0;padding: 15px;}
+#save{position:absolute;bottom:0;width:220px;background:@color1;
+
+
+border: none;
+  color: white;
+  font-size: 16.5px;
+  text-decoration: none;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden;
+
+
 }
-#content{
-    height: 100%;
-    overflow: hidden;
-}
-#editor{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 710px;
-}
-#markdown{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    padding: 15px;
+#save:hover{
+    
+background-color: #4e6d8d;
+    color: white;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden;
+
+
 }
