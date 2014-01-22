@@ -15,8 +15,9 @@ var UserSchema = new Schema( {
     authToken: { type: String, default: '' },
     baidu: {},
     
-    signupTime: { type : Date, default : Date.now( ) }, 
-    loginTime: { type : Date, default : Date.now( ) }
+    createTime: { type : Date, default : Date.now( ) },
+    updateTime: { type : Date, default : Date.now( ) },
+    loggedTime: { type : Date, default : Date.now( ) }
 
 } );
 

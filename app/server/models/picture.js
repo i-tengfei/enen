@@ -4,24 +4,23 @@ var mongoose = require( 'mongoose' ),
     crypto = require( 'crypto' );
 
 
-var ArticleSchema = new Schema( {
+var PictureSchema = new Schema( {
 
-    title: { type: String },
-    content: { type: String },
+    name: { type: String },
     author: { type: Schema.ObjectId, ref : 'user' },
     createTime: { type : Date, default : Date.now( ) },
     updateTime: { type : Date, default : Date.now( ) }
 
 } );
 
-ArticleSchema.set( 'toJSON',  {
+PictureSchema.set( 'toJSON',  {
     transform: function( doc, ret, options ) {
         delete ret.__v;
         return ret;
     }
 } );
 
-ArticleSchema.statics = {
+PictureSchema.statics = {
 
     load: function ( id, cb ) {
        this.findById( id ).exec( cb );
@@ -39,4 +38,4 @@ ArticleSchema.statics = {
 
 };
 
-mongoose.model( 'article', ArticleSchema, 'article' );
+mongoose.model( 'picture', PictureSchema, 'picture' );

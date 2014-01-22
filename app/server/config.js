@@ -1,5 +1,6 @@
 var path = require( 'path' ),
-    fs = require( 'fs-extra' );
+    fs = require( 'fs-extra' ),
+    _ = require( 'underscore' );
 
 var email = require( './email' );
 
@@ -11,42 +12,43 @@ var auth = {
     }
 };
 
+var basic = {
+    view: 'enen',
+    admin: '/admin',
+
+    email: email,
+    auth: auth,
+    base: path.normalize( __dirname ),
+    cache: path.normalize( basic.base + '/../../cache' ),
+    upload: path.normalize( basic.base + '/../../upload' )
+};
+
+
+
 var config = {
 
-    development: {
+    development: _.extend( {
         
         type: 'development',
         port: 3000,
-        db: fs.readFileSync( __dirname + '/database.development', 'utf8' ),
-        view: 'enen',
-        admin: '/admin',
+        db: fs.readFileSync( __dirname + '/database.development', 'utf8' )
 
-        email: email,
-        auth: auth
-
-    },
+    }, basic ),
 
     testing: {},
 
-    production: {
+    production: _.extend( {
 
         type: 'production',
         port: 17001,
-        db: fs.readFileSync( __dirname + '/database.production', 'utf8' ),
-        view: 'enen',
-        admin: '/admin',
+        db: fs.readFileSync( __dirname + '/database.production', 'utf8' )
 
-        email: email,
-        auth: auth
-
-    }
+    }, basic ),
     
 };
 
 module.exports = function( type ) {
-    var data = config[ type || process.env.NODE_ENV || 'development' ];
-    data.base = path.normalize( __dirname );
-    return data;
+    return config[ type || process.env.NODE_ENV || 'development' ];
 };
 
 module.exports.data = config;

@@ -114,8 +114,10 @@ module.exports = function ( app, passport ) {
     // ========== ========== ======== ========== ========== //
     app.post( '/api/picture', auth.yes, function( req, res ){
 
-        var tmpPath = req.files.picture.path;
-        
+        // TODO: 创建id;
+        fs.copy( tmpPath, config.upload + '/picture/id', function( err ){
+            res.send( 'success' );
+        } );
 
     } );
 
