@@ -3,5 +3,6 @@ bower_components/
 app/dist
 app/server/database.development
 app/server/database.production
+app/server/email.json
 cache/
 npm-debug.log

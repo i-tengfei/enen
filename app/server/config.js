@@ -1,14 +1,7 @@
 var path = require( 'path' ),
     fs = require( 'fs-extra' );
 
-var email = {
-    hosts : 'smtp.exmail.qq.com',
-    port : '25',
-    name : 'QQ',
-    username : 'service@malubei.com',
-    password : 'maervice123',
-    nickname : '码路北'
-};
+var email = require( './email' );
 
 var auth = {
     baidu: {
