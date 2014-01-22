@@ -4,9 +4,9 @@ var email = {
     hosts : 'smtp.exmail.qq.com',
     port : '25',
     name : 'QQ',
-    username : 'service@malubei.com',
-    password : 'maervice123',
-    nickname : '码路北'
+    username : 'service@xxxxxx.com',
+    password : 'xxxxxx',
+    nickname : '测试'
 };
 
 var auth = {
