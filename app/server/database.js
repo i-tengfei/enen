@@ -2,6 +2,7 @@ var mongoose = require( 'mongoose' );
 
 require( './models/user' );
 require( './models/article' );
+require( './models/picture' );
 
 module.exports = function( ){
 

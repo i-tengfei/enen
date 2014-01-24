@@ -1,6 +1,7 @@
 var Controller = require( './controllers/controller' ),
     user = Controller( 'user' ),
     article = Controller( 'article' ),
+    picture = Controller( 'picture' ),
     auth = require( './controllers/auth' ),
     fs = require( 'fs-extra' );
 
@@ -109,16 +110,23 @@ module.exports = function ( app, passport ) {
         res.send( req.result );
     } );
 
+    // ========== ========== =========== ========== ========== //
+    // ---------- ---------- | Picture | ---------- ---------- //
+    // ========== ========== =========== ========== ========== //
+    app.post( '/api/picture', [ auth.yes, picture.create, function( res, req, next ){
+        fs.copy( tmpPath, config.upload + '/picture/original/' + req.result._id, function( err ){
+            req.result.src = '/file/picture/' + req.result._id;
+            next( err );
+        } );
+    } ], function( req, res ){
+        res.send( req.result );
+    } );
+
     // ========== ========== ======== ========== ========== //
     // ---------- ---------- | File | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
-    app.post( '/api/picture', auth.yes, function( req, res ){
-
-        // TODO: 创建id;
-        fs.copy( tmpPath, config.upload + '/picture/id', function( err ){
-            res.send( 'success' );
-        } );
-
+    app.get( '/file/picture/:id', function( req, res ){
+        res.sendfile( config.upload + '/picture/original/' + req.params.id );
     } );
 
 };

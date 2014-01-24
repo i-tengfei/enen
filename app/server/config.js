@@ -19,8 +19,8 @@ var basic = {
     email: email,
     auth: auth,
     base: path.normalize( __dirname ),
-    cache: path.normalize( basic.base + '/../../cache' ),
-    upload: path.normalize( basic.base + '/../../upload' )
+    cache: path.normalize( __dirname + '/../../cache' ),
+    upload: path.normalize( __dirname + '/../../upload' )
 };
 
 
