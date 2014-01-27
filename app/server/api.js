@@ -28,7 +28,11 @@ module.exports = function ( app, passport ) {
     // 注册
     app.post( '/signup', [ auth.no, user.create ], function( req, res ) {
         req.login( req.result, function( err ){
-            res.send( req.user );
+            holder( err, function( ){
+                res.send( err );
+            }, function( ){
+                res.send( req.user );
+            } )
         } );
     } );
     // 退出
@@ -126,7 +130,21 @@ module.exports = function ( app, passport ) {
     // ---------- ---------- | File | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
     app.get( '/file/picture/:id', function( req, res ){
-        res.sendfile( config.upload + '/picture/original/' + req.params.id );
+
+        var picture = config.upload + '/picture/original/' + req.params.id;
+        // 判断文件是否存在
+        fs.exists( picture, function( bool ){
+            if( bool ){
+                // 判断文件状态
+                fs.stat( picture, function( err, stats ){
+                    stats.isFile( ) ? res.sendfile( picture ) : res.send( 404 );
+                } );
+            }else{
+                res.send( 404 );
+            }
+
+        } );
+
     } );
 
 };

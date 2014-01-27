@@ -6,9 +6,9 @@ var mongoose = require( 'mongoose' ),
 
 var UserSchema = new Schema( {
 
-    username: { type: String },
+    username: { type: String, unique: true },
     password: { type: String },
-    email: { type: String },
+    email: { type: String, unique: true },
 
     salt: { type: String, default: '' },
     
@@ -33,12 +33,23 @@ UserSchema.set( 'toJSON',  {
 
 UserSchema.pre( 'save', function( next ) {
 
-    if ( this.isNew ){ 
+    if( !this.username ){
+        next( error( 403, '用户名不能为空' ) );
+    }else if( /[^\w\u4e00-\u9fa5_-]/.test( this.username ) ){
+        next( error( 403, '用户名格式不正确' ) );
+    }else if( !this.password ){
+        next( error( 403, '密码不能为空' ) );
+    }else if( this.password.length < 8 || this.password.length > 24 ){
+        next( error( 403, '密码长度不正确' ) );
+    }else if( !this.email ){
+        next( error( 403, '邮箱不能为空' ) );
+    }else if( !/^(?:[a-zA-Z0-9]+[_\-\+\.]?)*[a-zA-Z0-9]+@(?:([a-zA-Z0-9]+[_\-]?)*[a-zA-Z0-9]+\.)+([a-zA-Z]{2,})+$/.test( this.email ) ){
+        next( error( 403, '邮箱格式不正确' ) );
+    }else if ( this.isNew ){ 
        this.salt = this.makeSalt( );
        this.password = this.encryptPassword( this.password );
+       next( );
     }
-
-    next( );
 
 } );
 
@@ -56,7 +67,7 @@ UserSchema.methods = {
     // 登录判断
     authenticate: function ( password ) {
        return this.encryptPassword( password ) === this.password;
-    },
+    }
 
 };
 

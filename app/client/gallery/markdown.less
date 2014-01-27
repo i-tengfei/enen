@@ -1,17 +1,108 @@
 @import "../../../bower_components/codemirror/lib/codemirror.css";
+@import "../../../bower_components/codemirror/theme/ambiance.css";
 
-html{font-family:Georgia, Times New Roman, Times, serif;font-weight:normal;}
-#markdown{
-    border:1px solid #ccc;padding:30px;
-    @color1:#000;
-    @color2:#333;
-    h1{font:2.5em/200% '';-webkit-margin-before:0;color:@color1;border-bottom:1px solid #ddd;}
-    h2{font:2em/200% '';color:@color2;border-bottom:1px solid #eee;}
-    h3{font:1.5em/250% '';-webkit-margin-before:0;color:@color2;}
-    p{font:14px/150% '';color:@color1;}
-    ul,ol{margin:15px 0;padding-left:30px;}
-    li{font:15px/1.7 Helvetica, arial, freesans, clean, sans-serif;color:@color2;}
-    ul li{list-style-type:disc;}
-    ol li{list-style-type:decimal;}
-    table{width:300px;text-align:center;}
+.markdown{
+
+    font-family: "Arial", "Microsoft YaHei", "Tahoma";
+    padding: 20px 30px;
+    line-height: 20px;
+    font-size: 14px;
+
+    h1, h2, h3{
+        margin: 20px -20px 20px -23px;
+    }
+
+    h1{
+        font-size: 22px;
+        color: #505050;
+        padding: 12px 20px;
+    }
+
+    h2{
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px 20px;
+        color: #606060;
+        border-bottom: 4px solid @color3;
+    }
+
+    h3{
+        font-size: 18px;
+        font-weight: normal;
+        padding: 8px 20px 8px 21px;
+        line-height: 18px;
+        color: #606060;
+        border-left: 2px solid @color2;
+        background: #F9F9F9;
+
+        &:hover{
+            border-left: 4px solid @color1;
+            padding-left: 20px;
+            margin-left: -24px;
+        }
+    }
+
+    p{
+        line-height: 26px;
+        color: #686868;
+    }
+
+    a{
+        color: #428BCA;
+        &:hover{
+            color: @color1;
+        }
+    }
+
+    ul li{
+        list-style: disc;
+    }
+
+    ol li{
+        list-style: decimal;
+    }
+
+    blockquote{
+        padding: 0 0 0 10px;
+        margin: 0 0 20px;
+        border-left: 3px solid #CCC;
+    }
+
+    p code{
+        padding: 1px 8px;
+        background: #272822;
+        border-radius: 2px;
+        color: #FFB795;
+    }
+
+    table{
+        tr{
+            td{
+                padding: 0 10px;
+            }
+        }
+    }
+
+    .CodeMirror{
+        border-radius: 2px;
+        background: #272822;
+        box-shadow: none;
+        font-size: 14px;
+        padding-left: 4px;
+    }
+    .CodeMirror-gutters{
+        background: none;
+        padding-right: 5px;
+        color: #CCC;
+    }
+    .CodeMirror-linenumber{
+        color: #666;
+    }
+    .CodeMirror {
+        height: auto;
+    }
+    .CodeMirror-scroll {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
 }
