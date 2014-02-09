@@ -1,5 +1,3 @@
-require( [ '../' ], function ( $, CodeMirror ) {
-
-
-
+require( [ 'client/gallery/code' ], function ( code ) {
+    code( );
 } );

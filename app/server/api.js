@@ -20,7 +20,7 @@ module.exports = function ( app, passport ) {
                     res.send( req.user );
                 } );
             }else{
-                res.send( 404 );
+                res.send( error( 403, '用户名或密码不正确！' ) );
             }
         } )( req, res );
 
@@ -142,7 +142,6 @@ module.exports = function ( app, passport ) {
             }else{
                 res.send( 404 );
             }
-
         } );
 
     } );
