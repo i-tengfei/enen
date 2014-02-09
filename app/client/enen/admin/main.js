@@ -1,4 +1,4 @@
-require( [ 'jquery', 'markdown', 'codemirror.markdown', 'markdown' ], function ( $, markdown, CodeMirror, markdown ) {
+require( [ 'jquery', 'markdown', 'codemirror.markdown', 'client/gallery/code' ], function ( $, markdown, CodeMirror, code ) {
 
     var delay = ( function( ){
         var t;
@@ -8,7 +8,7 @@ require( [ 'jquery', 'markdown', 'codemirror.markdown', 'markdown' ], function (
         }
     } )( )
 
-    var codeMirror = CodeMirror( $( '#editor' )[0], {
+    var codeMirror = CodeMirror( $( '#codemirror' )[0], {
         value: 'test',
         mode: 'markdown'
     } );
@@ -18,7 +18,8 @@ require( [ 'jquery', 'markdown', 'codemirror.markdown', 'markdown' ], function (
     function render( ){
         delay( function( ){
             $( '#markdown' ).html( markdown.parse( codeMirror.getValue( ) ) );
-        }, .5 )
+            code( );
+        }, .5 );
     }
 
     render( );

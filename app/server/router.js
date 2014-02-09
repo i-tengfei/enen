@@ -184,7 +184,7 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( config.admin, auth.yes, function( req, res ){
+    app.get( config.admin/*, auth.yes*/, function( req, res ){
 
         res.render( 'admin', {
             path: path + 'admin'
