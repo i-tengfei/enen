@@ -1,7 +1,32 @@
 extends layouts/admin
 block content
-    #editor
-        input#title
-        #codemirror
-
-    #markdown.markdown
+    ul#menu
+        li
+            a
+                .sbox
+                    i.fa.fa-pencil-square-o
+                span 文章
+        li
+            a
+                .sbox
+                    i.fa.fa-code
+                span 作品
+        li
+            a
+                .sbox
+                    i.fa.fa-picture-o
+                span 图片
+        li
+            a
+                .sbox
+                    i.fa.fa-users
+                span 用户
+        li
+            a
+                .sbox
+                    i.fa.fa-asterisk
+                span 设置
+    #header
+        
+    #container
+        iframe( src='#{config.admin}/article' )

@@ -24,8 +24,10 @@ define( [ 'jquery', 'codemirror.javascript', 'codemirror.python' ], function ( $
         $( 'pre code' ).each( function( ){
             var box = $( this );
             if( box.hasClass( 'lang-javascript' ) ){
+                console.log(1);
                 code( this, 'javascript' );
             }else if( box.hasClass( 'lang-python' ) ){
+                console.log(2);
                 code( this, 'python' );
             }else{
                 code( this, 'html' );

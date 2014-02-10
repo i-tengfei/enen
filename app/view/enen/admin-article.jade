@@ -1,0 +1,20 @@
+extends layouts/admin
+block content
+    #list
+        table( ng-controller='ArticlesCtrl' data-ng-init='find()' )
+            tr
+                th.column-title 标题
+                th.column-author 作者
+                th.column-actions 功能
+            tr( ng-repeat='article in articles' )
+                td
+                    a( href='/{{ article._id }}' ) {{ article.title }}
+                td
+                    a( href='/user/{{ article.author._id }}' ) {{ article.author.username }}
+                td 修改 删除
+    //#editor
+      //  span 标题
+        //input#title
+        //#codemirror
+        //button#save 发布
+    //#markdown.markdown

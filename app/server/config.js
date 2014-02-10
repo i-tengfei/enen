@@ -14,7 +14,7 @@ var auth = {
 
 var basic = {
     view: 'enen',
-    admin: '/admin',
+    admin: '/enen',
 
     email: email,
     auth: auth,

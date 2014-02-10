@@ -5,6 +5,7 @@
     "jquery": "~1.10.2",
     "less": "~1.5.1",
     "codemirror": "~3.20.0",
-    "marked": "~0.3.0"
+    "marked": "~0.3.0",
+    "angular-resource": "~1.2.12"
   }
 }

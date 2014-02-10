@@ -11,7 +11,9 @@ require.config( {
         'codemirror.javascript': 'bower_components/codemirror/mode/javascript/javascript',
         'codemirror.python': 'bower_components/codemirror/mode/python/python',
         'codemirror.vim': 'bower_components/codemirror/keymap/vim',
-        'markdown': 'bower_components/marked/lib/marked'
+        'markdown': 'bower_components/marked/lib/marked',
+        'angular': 'bower_components/angular/angular',
+        'angular-resource': 'bower_components/angular-resource/angular-resource'
     },
     shim: {
         'codemirror': {
@@ -40,6 +42,13 @@ require.config( {
         'codemirror.vim': {
             deps: [ 'codemirror' ],
             exports: 'CodeMirror'
+        },
+        'angular': {
+            exports: 'angular'
+        },
+        'angular-resource': {
+            deps: [ 'angular' ],
+            exports: 'angular'
         }
     }
 

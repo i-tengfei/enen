@@ -1,10 +1,132 @@
 @import "../../gallery/common.less";
-@import "../../gallery/markdown.less";
+@import "../../gallery/keyframes.less";
 
-#editor{
-	border-radius: 3px;
-	box-shadow: 0 0 5px #CCC;
-	background: #F3F3F3;
-	width: 800px;
-	margin: 0 auto;
+@deg: 135deg;
+
+.keyframes-item( sboxIn, 0% ) {
+    .rotate( 0deg );
+    background: #FFF;
+}
+.keyframes-item( sboxIn, 100% ) {
+    .rotate( @deg );
+    background: @color1;
+}
+.keyframes( sboxIn );
+
+.keyframes-item( sboxOut, 0% ) {
+    .rotate( @deg );
+    background: @color1;
+}
+.keyframes-item( sboxOut, 100% ) {
+    .rotate( 0deg );
+    background: #FFF;
+}
+.keyframes( sboxOut );
+
+.keyframes-item( iconIn, 0% ) {
+    .rotate( 0deg );
+    color: @color2;
+}
+.keyframes-item( iconIn, 100% ) {
+    .rotate( -@deg );
+    color: #FFF;
+}
+.keyframes( iconIn );
+
+.keyframes-item( iconOut, 0% ) {
+    .rotate( -@deg );
+    color: #FFF;
+}
+.keyframes-item( iconOut, 100% ) {
+    .rotate( 0deg );
+    color: @color2;
+}
+.keyframes( iconOut );
+
+#menu{
+    position: absolute;
+    width: 160px;
+    height: 100%;
+    background: @color3;
+    box-shadow: 0 0 5px @color2;
+    z-index: 30;
+
+    li{
+        position: relative;
+        font-size: 15px;
+        height: 48px;
+        line-height: 48px;
+        margin-left: 12px;
+
+        a{
+            display: block;
+            .sbox{
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                top: 9px;
+                border-radius: 2px;
+                background: #FFF;
+                text-align: center;
+                box-shadow: 0 0 5px #999;
+                .animation( sboxOut 0.4s ease );
+
+                i{
+                    position: absolute;
+                    left: 0;
+                    color: #FFF;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                    position: absolute;
+                    line-height: 30px;
+                    color: @color2;
+                    .animation( iconOut 0.4s ease );
+                }
+            }
+
+            span{
+                padding-left: 50px;
+            }
+
+            &:hover{
+                .sbox{
+                    .animation( sboxIn 0.2s ease );
+                    .rotate( @deg );
+                    background: @color1;
+
+                    i{
+                        .animation( iconIn 0.2s ease );
+                        .rotate( -@deg );
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+#header{
+    position: absolute;
+    height: 100px;
+    left: 160px;
+    right: 0;
+    top: 0;
+    box-shadow: 0 0 5px @color2;
+    z-index: 20;
+}
+#container{
+    position: absolute;
+    left: 160px;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+    background: #D5DAE6;
+
+    iframe{
+        border: none;
+        width: 100%;
+        height: 100%;
+    }
 }

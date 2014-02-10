@@ -36,7 +36,7 @@ module.exports = function ( app, passport ) {
         } );
     } );
     // 退出
-    app.all( '/logout', auth.no, function( req, res ){
+    app.all( '/logout', auth.yes, function( req, res ){
         req.logout( );
         res.redirect( '/' );
     } );
@@ -100,9 +100,11 @@ module.exports = function ( app, passport ) {
     app.get( '/api/article/:page', article.list, function( req, res ){
         res.send( req.result );
     } );
-    // TODO: 权限验证
     // 增
-    app.post( '/api/article', [ auth.yes, article.create ], function( req, res ){
+    app.post( '/api/article', [ auth.yes, function( req, res, next ){
+        req.body.author = req.user;
+        next( );
+    }, article.create ], function( req, res ){
         res.send( req.result );
     } );
     // 删
@@ -111,6 +113,10 @@ module.exports = function ( app, passport ) {
     } );
     // 改
     app.put( '/api/article/:id', [ auth.yes, article.load, auth.author, article.update ], function( req, res ){
+        res.send( req.result );
+    } );
+    // 查
+    app.get( '/api/article/:id', article.load, function( req, res ){
         res.send( req.result );
     } );
 
