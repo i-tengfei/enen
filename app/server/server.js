@@ -52,7 +52,7 @@ module.exports = function( ){
         app.use( function( err, req, res, next ){
             if ( err.message ) {
                 // TODO: 不同的错误页面
-                res.send( err.message );
+                res.send( err.message, err.msg );
             }
         } );
 

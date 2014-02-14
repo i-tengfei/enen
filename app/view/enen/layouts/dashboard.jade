@@ -1,0 +1,24 @@
+html
+    include ../includes/head
+    body
+        header#header
+            .container
+                nav.col-md-6
+                    .btn-group.btn-block
+                        a.btn.btn-default( role='button' )
+                            i.fa.fa-pencil-square-o
+                            文章
+                        a.btn.btn-default( role='button' )
+                            i.fa.fa-code
+                            作品
+                        a.btn.btn-default( role='button' )
+                            i.fa.fa-picture-o
+                            图片
+                        a.btn.btn-default( role='button' )
+                            i.fa.fa-users
+                            用户
+                        a.btn.btn-default( role='button' )
+                            i.fa.fa-asterisk
+                            设置
+        section#content
+            block content

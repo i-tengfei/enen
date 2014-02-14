@@ -13,7 +13,8 @@ require.config( {
         'codemirror.vim': 'bower_components/codemirror/keymap/vim',
         'markdown': 'bower_components/marked/lib/marked',
         'angular': 'bower_components/angular/angular',
-        'angular-resource': 'bower_components/angular-resource/angular-resource'
+        'angular-resource': 'bower_components/angular-resource/angular-resource',
+        'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap'
     },
     shim: {
         'codemirror': {

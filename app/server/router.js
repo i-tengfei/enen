@@ -45,18 +45,18 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( config.admin, auth.yes, function( req, res ){
+    app.get( config.dashboard, auth.yes, function( req, res ){
 
-        res.render( 'admin', _.extend( data, {
-            path: path + 'admin'
+        res.render( 'dashboard', _.extend( data, {
+            path: path + 'dashboard'
         } ) );
 
     } );
 
-    app.get( config.admin + '/article', auth.yes, function( req, res ){
+    app.get( config.dashboard + '/article', auth.yes, function( req, res ){
 
-        res.render( 'admin-article', _.extend( data, {
-            path: path + 'admin-article'
+        res.render( 'dashboard-article', _.extend( data, {
+            path: path + 'dashboard-article'
         } ) );
 
     } );
