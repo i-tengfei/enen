@@ -1,11 +1,70 @@
 @import "common.less";
+@import "keyframes.less";
+
+.keyframes-item( show, 0% ) {
+    .opacity( 0 );
+    .scale( .6 );
+}
+.keyframes-item( show, 100% ) {
+    .opacity( 1 );
+    .scale( 1 );
+}
+.keyframes( show );
+
+body{
+    height: 100%;
+}
+
+#container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-left: 280px;
+    width: 100%;
+    background: #F1F1F1;
+    .animation( show 0.4s ease );
+}
 
 #menu{
-    .btn{
-        width:20%;
-        i{
-            display: none;
-            float: left;
+    position: absolute;
+    width: 280px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #303641;
+    color: #aaabae;
+    z-index: 1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #CCC;
+
+    .nav{
+        border-bottom: 1px solid #292929;
+
+        li{
+            margin-top: 0;
+            border-top: 1px solid #292929;
+            a{
+                border-radius: 0;
+                color: #CCC;
+            }
+        }
+        .active{
+            a{
+                color: #FFF;
+            }
         }
     }
+}
+
+#main{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    z-index: 2;
 }

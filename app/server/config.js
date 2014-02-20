@@ -31,8 +31,7 @@ var config = {
         
         type: 'development',
         port: 3000,
-        db: fs.readFileSync( __dirname + '/database.development', 'utf8' )
-
+        db: fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( )
     }, basic ),
 
     testing: {},
@@ -41,7 +40,7 @@ var config = {
 
         type: 'production',
         port: 17001,
-        db: fs.readFileSync( __dirname + '/database.production', 'utf8' )
+        db: fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( )
 
     }, basic ),
     

@@ -1,24 +1,18 @@
 html
     include ../includes/head
     body
-        header#header
-            .container
-                nav.col-md-6
-                    .btn-group.btn-block
-                        a.btn.btn-default( role='button' )
-                            i.fa.fa-pencil-square-o
-                            文章
-                        a.btn.btn-default( role='button' )
-                            i.fa.fa-code
-                            作品
-                        a.btn.btn-default( role='button' )
-                            i.fa.fa-picture-o
-                            图片
-                        a.btn.btn-default( role='button' )
-                            i.fa.fa-users
-                            用户
-                        a.btn.btn-default( role='button' )
-                            i.fa.fa-asterisk
-                            设置
-        section#content
-            block content
+        #container
+            #menu
+                ul.nav.nav-pills.nav-stacked
+                    li.active
+                        a( href='javascript:' ) 首页
+                    li
+                        a( href='javascript:' ) 文章
+                            span.badge.pull-right 42
+                    li
+                        a( href='javascript:' ) 作品
+                            span.badge.pull-right 42
+                    li
+                        a( href='javascript:' ) 图库
+                            span.badge.pull-right 42
+            #main
