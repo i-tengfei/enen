@@ -1,7 +1,5 @@
 @import "common.less";
 #header{
-    padding: 15px 0;
-    height: 30px;
     position: absolute;
     top: 0;
     left: 0;
@@ -27,4 +25,43 @@
             padding: 0 12px;
         }
     }
+}
+
+.keyframes-item( name-logo-in, 0% ) {
+    font-size: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 auto;
+}
+.keyframes-item( name-logo-in, 100% ) {
+    font-size: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 10px auto;
+}
+.keyframes( name-logo-in );
+
+.keyframes-item( name-logo-out, 0% ) {
+    font-size: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 10px auto;
+}
+.keyframes-item( name-logo-out, 100% ) {
+    font-size: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 auto;
+}
+.keyframes( name-logo-out );
+
+#name-logo{
+    font-family: 'EnEn-Web';
+    text-align: center;
+    width: 180px;
+
+    font-size: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 10px auto;
 }

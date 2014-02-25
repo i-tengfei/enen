@@ -15,13 +15,15 @@ body{
     height: 100%;
 }
 
+@menuWidth: 200px;
+
 #container{
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    padding-left: 280px;
+    padding-left: @menuWidth;
     width: 100%;
     background: #F1F1F1;
     .animation( show 0.4s ease );
@@ -29,11 +31,11 @@ body{
 
 #menu{
     position: absolute;
-    width: 280px;
+    width: @menuWidth;
     top: 0;
     left: 0;
     bottom: 0;
-    background: #303641;
+    background: #313233;
     color: #aaabae;
     z-index: 1;
     -webkit-box-sizing: border-box;
@@ -41,19 +43,39 @@ body{
     box-sizing: border-box;
     color: #CCC;
 
+    #user{
+        height: 240px;
+
+        #user-name{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        #user-avatar{
+            width: 90px;
+            height: 90px;
+            background: #FFF;
+            margin: 0 auto;
+            border-radius: 60px;
+        }
+    }
+
     .nav{
         border-bottom: 1px solid #292929;
 
         li{
-            margin-top: 0;
-            border-top: 1px solid #292929;
+            margin-top: 1px;
             a{
                 border-radius: 0;
                 color: #CCC;
+                background: #1f2022;
             }
         }
         .active{
             a{
+                background: #68a1d2;
                 color: #FFF;
             }
         }
