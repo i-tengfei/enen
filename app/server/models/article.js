@@ -24,18 +24,28 @@ ArticleSchema.set( 'toJSON',  {
 ArticleSchema.statics = {
 
     load: function ( id, cb ) {
-        this.findById( id ).populate( 'author' ).exec( cb );
+        this.findById( id ).populate( 'author', '_id username' ).exec( cb );
     },
 
     list: function ( options, cb ) {
         var criteria = options.criteria || { };
 
         this.find( criteria )
-            .populate( 'author' )
+            .populate( 'author', '_id username' )
             .sort( { _id: -1 } )
             .limit( options.count )
             .skip( options.count * options.page )
             .exec( cb );
+    },
+
+    random: function( callback ) {
+        this.count( function( err, count ) {
+            if ( err ) {
+                return callback( err );
+            }
+            var rand = Math.floor( Math.random( ) * count );
+            this.findOne( ).populate( 'author', '_id username' ).skip( rand ).exec( callback );
+        }.bind( this ) );
     }
 
 };

@@ -12,10 +12,19 @@ module.exports = function ( app ) {
         config: config
     };
 
-    app.get( '/', function( req, res ){
+    app.get( '/', function( req, res, next ){
+        
+        article.Model.random( function( err, result ){
+            result.content = markdown.parse( result.content );
+            req.result = result;
+            next( err );
+        } )
+
+    }, function( req, res ){
 
         res.render( 'index', _.extend( data, {
-            path: path + 'index'
+            path: path + 'index',
+            article: req.result
         } ) );
 
     } );

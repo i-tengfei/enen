@@ -1,67 +1,24 @@
 @import "common.less";
-#header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-}
-#footer{
-    height: 100px;
-}
 
-#content{
-    width: 100%;
-    margin-top: 60px;
-}
+.navbar-enen{
+    background-color: #FFF;
+    border: 0;
+    box-shadow: 0 0 10px #555;
 
-#base-menu{
-    font-size: 14px;
-    line-height: 30px;
-    li{
-        float: left;
-        a{
-            display: block;
-            padding: 0 12px;
+    .navbar-nav {
+        font-size: 14px;
+        .active{
+            a{
+                background: none;
+                &:hover{
+                    background: none;
+                }
+            }
         }
     }
 }
 
-.keyframes-item( name-logo-in, 0% ) {
-    font-size: 24px;
-    height: 24px;
-    line-height: 24px;
-    margin: 0 auto;
-}
-.keyframes-item( name-logo-in, 100% ) {
-    font-size: 60px;
-    height: 60px;
-    line-height: 60px;
-    margin: 10px auto;
-}
-.keyframes( name-logo-in );
-
-.keyframes-item( name-logo-out, 0% ) {
-    font-size: 60px;
-    height: 60px;
-    line-height: 60px;
-    margin: 10px auto;
-}
-.keyframes-item( name-logo-out, 100% ) {
-    font-size: 24px;
-    height: 24px;
-    line-height: 24px;
-    margin: 0 auto;
-}
-.keyframes( name-logo-out );
-
 #name-logo{
     font-family: 'EnEn-Web';
-    text-align: center;
-    width: 180px;
-
-    font-size: 60px;
-    height: 60px;
-    line-height: 60px;
-    margin: 10px auto;
+    font-size: 30px;
 }

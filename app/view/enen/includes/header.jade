@@ -1,12 +1,19 @@
-header#header
-    .central
-        #name-logo 嗯嗯
-        ul#base-menu
-            li
-                a( href='/' ) 首页
-            li
-                a 测试
-            li
-                a 测试
-            li
-                a 测试
+header#header.navbar.navbar-default.navbar-enen.navbar-static-top( role='navigation' )
+    .container
+        .navbar-header
+            button.navbar-toggle( type='button', data-toggle='collapse', data-target='.navbar-collapse' )
+                span.sr-only 展开
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a#name-logo.navbar-brand( href='/' ) 嗯嗯
+        .navbar-collapse.collapse
+            ul.nav.navbar-nav
+                li.active
+                    a 测试
+                li
+                    a 测试
+                li
+                    a 测试
+                li
+                    a 测试

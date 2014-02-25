@@ -1,5 +1,6 @@
 @import "mixin.less";
 @import "fonticons.less";
+@import "/bower_components/bootstrap/dist/css/bootstrap.css";
 
 @color1: #F14E42;
 @color2: #6F6F70;
@@ -17,18 +18,6 @@ body, textarea, select, input, button{
     font-family: "Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei",tahoma,arial,simsun;
     outline: none;
 }
-img {
-    max-width: 100%;
-    vertical-align: middle;
-}
-ul, ol, li, h3, p{
-    margin: 0;
-    padding: 0;
-}
-button{
-    border: 0;
-    cursor: pointer;
-}
 a{
     text-decoration: none;
     cursor: pointer;
@@ -43,28 +32,6 @@ pre{
 }
 button::-moz-focus-inner {
     border: 0;
-}
-ul li{
-    list-style:none;
-}
-ol li{
-    list-style:none;
-}
-
-.central{
-    position: relative;
-    margin: 0 auto;
-
-    @media ( min-width: 1240px ){
-        max-width: 1200px;
-    }
-    @media ( min-width: 800px ) and ( max-width: 1200px ){
-        max-width: 960px;
-    }
-}
-
-.clear{
-    clear: both;
 }
 
 ::-webkit-scrollbar {

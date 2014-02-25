@@ -1,108 +1,19 @@
-@import "../../gallery/common.less";
+@import "../../gallery/dashboard.less";
 @import "../../gallery/markdown.less";
 
-.editor{
-    display: none;
+#editor .modal-dialog{
+    width: 100%;
 
-    td{
-        height: 400px;
-
-        .editor-input, .editor-output{
-            float: left;
-            position: relative;
-            width: 50%;
-            height: 100%;
-        }
-        .editor-input{
-            @th: 24px;
-
-            .editor-article-title{
-                height: @th;
-                position: absolute;
-                left: 0;
-                right: 100px;
-                padding: 8px 15px;
-                margin: 5px;
-                border-radius: 3px;
-                background: #FFF;
-
-                input{
-                    font-size: 15px;
-                    border: 0;
-                    height: @th;
-                    width: 100%;
-                    line-height: @th;
-                }
-            }
-            .editor-article-content{
-                position: absolute;
-                top: @th + 8 * 2 + 10;
-                left: 5px;
-                right: 5px;
-                bottom: 5px;
-                .CodeMirror{
-                    font-size: 14px;
-                }
-            }
-        }
-        .editor-output{
-        }
+    #editor-title{
+        width: 300px;
     }
 }
 
 
 #list{
-    position: absolute;
-    left: 15px;
-    right: 15px;
-    margin: 10px 0;
 
     table{
-        width: 100%;
         font-size: 12px;
-        border: 0;
-        border-collapse:collapse;
-
-        tr{
-            border: 0;
-            padding: 0;
-            height: 36px;
-            border-bottom: 1px solid #CCC;
-            background: @color3;
-            
-            th{
-                border: 0;
-            }
-            td{
-                border: 0;
-
-                .iconbtn{
-                    float: left;
-                    display: block;
-                    width: 20px;
-                    height: 20px;
-                    margin: 8px;
-                }
-                i{
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    line-height: 20px;
-                    text-align: center;
-                    font-size: 14px;
-                }
-            }
-            .column-author{
-                width: 200px;
-            }
-            .column-actions{
-                width: 100px;
-            }
-            .article-title{
-                padding-left: 15px;
-            }
-        }
-
 
     }
     

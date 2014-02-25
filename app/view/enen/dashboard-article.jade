@@ -1,26 +1,39 @@
-extends layouts/admin
+extends layouts/dashboard
+
+
+block body
+    .modal#editor.fade( tabindex='-1', role='dialog', aria-labelledby='editor-title', aria-hidden='true' )
+        .container
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        a.close( type='button', data-dismiss='modal', aria-hidden='true' ) &times;
+                        h4#editor-title.modal-title 编辑
+                    .modal-body
+                        input.form-control#article-title( type='text' )
+                        #codemirror
+                    .modal-footer
+                        a.btn.btn-default( data-dismiss='modal' ) 取消
+                        a.btn.btn-primary 保存
+
+
 block content
-    #list
-        table( ng-controller='ArticlesCtrl' data-ng-init='find()' )
+    #list.panel.panel-default
+        .panel-body
+            .btn-group
+                a.btn.btn-default 刷新
+                a.btn.btn-primary 新建文章
+        table.table.table-hover.table-striped( ng-controller='ArticlesCtrl' data-ng-init='find()' )
             tr
                 th.column-title 标题
                 th.column-author 作者
                 th.column-actions 功能
-            tr.editor
-                td( colspan='3' )
-                    .editor-input
-                        .editor-article-title
-                            input
-                        .editor-article-content
-                    .editor-output
             tr( ng-repeat='article in articles' )
                 td.article-title
-                    a( href='/{{ article._id }}', target='_blank' ) {{ article.title }}
+                    a.btn.btn-link.btn-sm( href='/{{ article._id }}', target='_blank' ) {{ article.title }}
                 td
-                    a( href='/user/{{ article.author._id }}', target='_blank' ) {{ article.author.username }}
+                    a.btn.btn-link.btn-sm( href='/user/{{ article.author._id }}', target='_blank' ) {{ article.author.username }}
                 td
-                    a.iconbtn( href='javascript:', ng-click='edit($event,article)' )
-                        i.fa.fa-pencil-square-o
-                    a.iconbtn( href='javascript:', ng-click='remove(article)' )
-                        i.fa.fa-times
+                    a.btn.btn-link.btn-sm( href='javascript:', ng-click='edit($event,article)' ) 编辑
+                    a.btn.btn-link.btn-sm( href='javascript:', ng-click='remove(article)' ) 删除
     #markdown.markdown

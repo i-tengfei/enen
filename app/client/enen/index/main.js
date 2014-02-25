@@ -1,5 +1,5 @@
-require( [ 'jquery', 'markdown' ], function ( $, markdown ) {
+require( [ 'jquery', 'client/gallery/code', 'client/gallery/common' ], function ( $, code ) {
 
-    console.log( $ );
+    code( );
 
 } );

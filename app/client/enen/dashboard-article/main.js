@@ -1,4 +1,4 @@
-require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource' ], function ( $, CodeMirror, markdown, angular ) {
+require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'client/gallery/dashboard' ], function ( $, CodeMirror, markdown, angular ) {
 
     angular.module( 'article', [ 'ngResource' ] )
     .factory( 'Articles', [ '$resource', function( $resource ) {
@@ -19,9 +19,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource' ], 
         };
 
         $scope.edit = function( event, article ){
-            var dom = $( $( '.editor' )[0] ).clone( );
-            $( event.currentTarget ).parent( ).parent( ).after( dom.show( ) );
-            buildCode( dom.find( '.editor-article-content' )[0] );
+            console.log( $( '#editor' ).modal( 'show' ) );
         };
 
         $scope.remove = function( article ) {
@@ -54,14 +52,10 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource' ], 
         }
     } )( )
 
-    function buildCode( dom ){
-
-        var codeMirror = CodeMirror( dom, {
-            value: '',
-            mode: 'markdown'
-        } );
-
-    }
+    var codeMirror = CodeMirror( $( '#codemirror' )[ 0 ], {
+        value: '',
+        mode: 'markdown'
+    } );
 
 
     // codeMirror.on( 'change', render );

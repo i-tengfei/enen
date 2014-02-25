@@ -1,3 +1,4 @@
-require( [ 'jquery', 'bootstrap' ], function ( $ ) {
+require( [ 'jquery', 'client/gallery/dashboard' ], function ( $ ) {
+    
 
 } );

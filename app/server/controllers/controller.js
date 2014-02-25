@@ -3,13 +3,13 @@ var mongoose = require( 'mongoose' ),
 
 function Controller( id ){
 
-    var model = mongoose.model( id );
+    var Model = mongoose.model( id );
 
     return {
 
         create: function( req, res, next ){
 
-            var entity = new model( req.body );
+            var entity = new Model( req.body );
 
             entity.save( function ( err, result ) {
 
@@ -49,7 +49,7 @@ function Controller( id ){
 
         load: function( req, res, next ){
 
-            model.load( req.params.id, function ( err, result ) {
+            Model.load( req.params.id, function ( err, result ) {
 
                 if ( err ) return next( err );
                 if ( result ){
@@ -72,9 +72,9 @@ function Controller( id ){
                 page: page
             };
 
-            model.list( options, function( err, results ) {
+            Model.list( options, function( err, results ) {
 
-                model.count( ).exec( function ( err, count ) {
+                Model.count( ).exec( function ( err, count ) {
                     
                     req.result = results;
                     next( err );
@@ -83,7 +83,9 @@ function Controller( id ){
 
             } );
 
-        }
+        },
+
+        Model: Model
 
     }
 

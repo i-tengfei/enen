@@ -1,23 +1,31 @@
 html
     include ../includes/head
     body
+        block body
         #container
-            #menu
+            #menu.menu-show
                 #user
+                    a#menu-toggle
+                        i.fa.fa-bars
                     #user-name 一路走红
                     #user-avatar
                         img
-                    button.btn.btn-default( type="button" )
                 ul.nav.nav-pills.nav-stacked
                     li.active
-                        a( href='javascript:' ) 首页
+                        a( href='javascript:' )
+                            i.fa.fa-home
+                            span 首页
                     li
-                        a( href='javascript:' ) 文章
-                            span.badge.pull-right 42
+                        a( href='javascript:' )
+                            i.fa.fa-pencil-square
+                            span 文章
                     li
-                        a( href='javascript:' ) 作品
-                            span.badge.pull-right 42
+                        a( href='javascript:' )
+                            i.fa.fa-code
+                            span 作品
                     li
-                        a( href='javascript:' ) 图库
-                            span.badge.pull-right 42
+                        a( href='javascript:' )
+                            i.fa.fa-picture-o
+                            span 图库
             #main
+                block content

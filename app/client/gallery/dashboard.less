@@ -29,19 +29,66 @@ body{
     .animation( show 0.4s ease );
 }
 
+.menu-show{
+    width: @menuWidth;
+    background: #313233;
+    color: #CCC;
+
+    #user{
+        #user-name{
+        }
+        #user-avatar{
+
+        }
+    }
+}
+
+.menu-hide{
+    width: 40px;
+    background: #313233;
+    color: #CCC;
+
+    #user{
+        #user-name{
+            display: none;
+        }
+        #user-avatar{
+            display: none;
+        }
+    }
+
+    .nav{
+        a{
+            span{
+                display: none;
+            }
+        }
+    }
+}
+
 #menu{
     position: absolute;
-    width: @menuWidth;
     top: 0;
     left: 0;
     bottom: 0;
-    background: #313233;
-    color: #aaabae;
     z-index: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #CCC;
+
+    #menu-toggle{
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        text-decoration: none;
+        .fa{
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            width: 40px;
+            font-size: 17px;
+            color: #FFF;
+            text-align: center;
+        }
+    }
 
     #user{
         height: 240px;
@@ -71,6 +118,22 @@ body{
                 border-radius: 0;
                 color: #CCC;
                 background: #1f2022;
+                line-height: 40px;
+                height: 40px;
+                padding: 0;
+                .fa{
+                    line-height: 40px;
+                    width: 40px;
+                    height: 40px;
+                    float: left;
+                    display: block;
+                    font-size: 17px;
+                    text-align: center;
+                }
+                .span{
+                    display: block;
+                    float: left;
+                }
             }
         }
         .active{
