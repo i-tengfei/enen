@@ -10,7 +10,7 @@
             th.column-actions 功能
         tr( ng-repeat='article in articles' )
             td.article-title
-                a.btn.btn-link.btn-sm( href='/{{ article._id }}', target='_blank' ) {{ article.title }}
+                a.btn.btn-link.btn-sm( href='/article/{{ article._id }}', target='_blank' ) {{ article.title }}
             td
                 a.btn.btn-link.btn-sm( href='/user/{{ article.author._id }}', target='_blank' ) {{ article.author.username }}
             td

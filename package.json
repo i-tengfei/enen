@@ -15,7 +15,7 @@
     "fs-extra": "~0.8.1"
   },
   "scripts": {
-    "start": "node app/server/app"
+    "start": "node server/app"
   },
   "licenses": [
     {

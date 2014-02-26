@@ -1,12 +1,12 @@
 'use strict';
 
 var fs = require( 'fs' );
-var view = require( './app/server/config' ).data.production.view;
+var view = require( './server/config' ).data.production.view;
 
 module.exports = function( grunt ) {
 
-    var apps = fs.readdirSync( 'app/client/' + view ).filter( function( x ){
-        return fs.statSync( 'app/client/' + view + '/' + x ).isDirectory( );
+    var apps = fs.readdirSync( 'client/' + view ).filter( function( x ){
+        return fs.statSync( 'client/' + view + '/' + x ).isDirectory( );
     } );
 
     var config = {
@@ -26,8 +26,11 @@ module.exports = function( grunt ) {
 
     var requirejsTask = {},
         uglifyTask = {},
-        lessTask = {},
-        cssminTask = {};
+        lessTask = {
+            options: {
+                compress: true
+            }
+        };
     
 
     apps.forEach( function( x ){
@@ -35,29 +38,23 @@ module.exports = function( grunt ) {
         requirejsTask[ x ] = {
             options: {
                 baseUrl: './',
-                name: 'app/client/' + view + '/' + x + '/main',
-                mainConfigFile: 'app/client/config.js',
-                out: 'app/dist/' + x + '.js',
+                name: 'client/' + view + '/' + x + '/main',
+                mainConfigFile: 'client/config.js',
+                out: 'dist/' + x + '.js',
                 optimize: 'none'
             }
         };
 
 
         uglifyTask[ x ] = {
-            src: 'app/dist/' + x + '.js',
-            dest: 'app/dist/' + x + '.js'
+            src: 'dist/' + x + '.js',
+            dest: 'dist/' + x + '.js'
         };
 
 
         lessTask[ x ] = {
-            src: 'app/client/' + view + '/' + x + '/main.less',
-            dest: 'app/dist/' + x + '.css'
-        };
-
-
-        cssminTask[ x ] = {
-            src: 'app/dist/' + x + '.css',
-            dest: 'app/dist/' + x + '.css'
+            src: 'client/' + view + '/' + x + '/main.less',
+            dest: 'dist/' + x + '.css'
         };
 
     } );
@@ -65,7 +62,7 @@ module.exports = function( grunt ) {
 
     uglifyTask.requirejs = {
         src: 'bower_components/requirejs/require.js',
-        dest: 'app/dist/require.js'
+        dest: 'dist/require.js'
     };
 
 
@@ -74,13 +71,12 @@ module.exports = function( grunt ) {
 
         clean: {
             files: [
-                'app/dist'
+                'dist'
             ]
         },
         requirejs: requirejsTask,
         uglify: uglifyTask,
-        less: lessTask,
-        cssmin: cssminTask
+        less: lessTask
 
     } );
 
@@ -88,9 +84,8 @@ module.exports = function( grunt ) {
     grunt.loadNpmTasks( 'grunt-contrib-less' );
     grunt.loadNpmTasks( 'grunt-contrib-clean' );
     grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-    grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
     grunt.loadNpmTasks( 'grunt-contrib-requirejs' );
 
-    grunt.registerTask( 'default', [ 'clean', 'requirejs', 'uglify', 'less', 'cssmin' ] );
+    grunt.registerTask( 'default', [ 'clean', 'requirejs', 'uglify', 'less' ] );
 
 };

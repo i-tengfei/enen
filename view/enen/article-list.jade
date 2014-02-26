@@ -1,0 +1,7 @@
+extends layouts/page
+block content
+    .container
+        ul
+            each article in articles
+                li
+                    a.title( href='/article/#{article._id}' ) #{article.title}

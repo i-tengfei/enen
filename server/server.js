@@ -44,7 +44,7 @@ module.exports = function( ){
 
         if ( config.type === 'development' ) {
             app.use( '/client', express.static( config.base + '/../client' ) );
-            app.use( '/bower_components', express.static( config.base + '/../../bower_components' ) );
+            app.use( '/bower_components', express.static( config.base + '/../bower_components' ) );
         }else{
             app.use( '/', express.static( config.base + '/../dist' ) );
         }

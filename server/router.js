@@ -1,4 +1,4 @@
-var markdown = require( '../../bower_components/marked' ),
+var markdown = require( '../bower_components/marked' ),
     Controller = require( './controllers/controller' ),
     user = Controller( 'user' ),
     article = Controller( 'article' ),
@@ -45,12 +45,21 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( '/:id', article.load, function( req, res ){
+    app.get( '/article/:id', article.load, function( req, res ){
 
         req.result.content = markdown.parse( req.result.content );
         res.render( 'article', _.extend( data, _.extend( req.result, {
             path: path + 'article'
         } ) ) );
+
+    } );
+
+    app.get( '/article', article.list, function( req, res ){
+
+        res.render( 'article-list', _.extend( data, {
+            path: path + 'article-list',
+            articles: req.result
+        } ) );
 
     } );
 
