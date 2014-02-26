@@ -54,7 +54,7 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( config.dashboard, auth.yes, function( req, res ){
+    app.get( [ config.dashboard, config.dashboard + '/*' ], auth.yes, function( req, res ){
 
         res.render( 'dashboard', _.extend( data, {
             path: path + 'dashboard'
@@ -62,11 +62,9 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( config.dashboard + '/article', auth.yes, function( req, res ){
+    app.get( config.dashboard + '-tpl/:tpl', auth.yes, function( req, res ){
 
-        res.render( 'dashboard-article', _.extend( data, {
-            path: path + 'dashboard-article'
-        } ) );
+        res.render( 'dashboard-includes/' + req.params.tpl, data );
 
     } );
 

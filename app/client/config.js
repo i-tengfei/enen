@@ -13,6 +13,7 @@ require.config( {
         'codemirror.vim': 'bower_components/codemirror/keymap/vim',
         'markdown': 'bower_components/marked/lib/marked',
         'angular': 'bower_components/angular/angular',
+        'angular-route': 'bower_components/angular-route/angular-route',
         'angular-resource': 'bower_components/angular-resource/angular-resource',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap'
     },
@@ -48,6 +49,10 @@ require.config( {
             exports: 'angular'
         },
         'angular-resource': {
+            deps: [ 'angular' ],
+            exports: 'angular'
+        },
+        'angular-route': {
             deps: [ 'angular' ],
             exports: 'angular'
         }

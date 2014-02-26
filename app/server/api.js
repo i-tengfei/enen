@@ -7,6 +7,12 @@ var Controller = require( './controllers/controller' ),
 
 module.exports = function ( app, passport ) {
 
+    app.save = function( methods, url, middleware, callback ){
+        methods.forEach( function( x ){
+            app[ x ]( url, middleware, callback );
+        } );
+    };
+
     // ========== ========== ======== ========== ========== //
     // ---------- ---------- | Auth | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
@@ -57,8 +63,7 @@ module.exports = function ( app, passport ) {
     // ========== ========== ======== ========== ========== //
     // ---------- ---------- | User | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
-    app.options( '/api/user', function( req, res ){ res.send( 200 ) } );
-    app.options( '/api/user/:id', function( req, res ){ res.send( 200 ) } );
+    app.options( [ '/api/user', '/api/user/:id' ], function( req, res ){ res.send( 200 ) } );
 
     // 列表
     app.get( '/api/user', user.list, function( req, res ){
@@ -90,8 +95,7 @@ module.exports = function ( app, passport ) {
     // ========== ========== =========== ========== ========== //
     // ---------- ---------- | Article | ---------- ---------- //
     // ========== ========== =========== ========== ========== //
-    app.options( '/api/article', function( req, res ){ res.send( 200 ) } );
-    app.options( '/api/article/:id', function( req, res ){ res.send( 200 ) } );
+    app.options( [ '/api/article', '/api/article/:id' ], function( req, res ){ res.send( 200 ) } );
 
     // 列表
     app.get( '/api/article', article.list, function( req, res ){
@@ -112,7 +116,7 @@ module.exports = function ( app, passport ) {
         res.send( {} );
     } );
     // 改
-    app.put( '/api/article/:id', [ auth.yes, article.load, auth.author, article.update ], function( req, res ){
+    app.save( [ 'put', 'post' ], '/api/article/:id', [ auth.yes, article.load, auth.author, article.update ], function( req, res ){
         res.send( req.result );
     } );
     // 查
