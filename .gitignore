@@ -6,3 +6,4 @@ server/database.production
 server/email.json
 cache/
 npm-debug.log
+.bowerrc
