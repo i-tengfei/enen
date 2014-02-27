@@ -12,7 +12,9 @@ fs.existsSync( REPO + 'server/database.development' ) || fs.linkSync( DATA + 'da
 fs.existsSync( REPO + 'server/email.json' ) || fs.linkSync( DATA + 'email.json', REPO + 'server/email.json' );
 
 exec( 'HOME=/tmp bower install '+ REPO + 'bower.json', {
+    
     cwd: REPO
+
 }, function ( e ) {
 
     e && console.log( e );
