@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 
 var fs = require( 'fs' ),
-    exec = require('child_process').exec;
+    exec = require('child_process').exec,
+    env = process.env;
 
-fs.linkSync( '/app-root/data/database.production', '/app-root/runtime/repo/server/database.production' );
-fs.linkSync( '/app-root/data/database.development', '/app-root/runtime/repo/server/database.development' );
-fs.linkSync( '/app-root/data/email.json', '/app-root/runtime/repo/server/email.json' );
+var DATA = env.OPENSHIFT_DATA_DIR,
+    REPO = env.OPENSHIFT_REPO_DIR;
 
-exec( 'HOME=/tmp bower install /app-root/runtime/repo/', function ( e ) {
+fs.linkSync( DATA + 'database.production', REPO + 'server/database.production' );
+fs.linkSync( DATA + 'database.development', REPO + 'server/database.development' );
+fs.linkSync( DATA + 'email.json', REPO + 'server/email.json' );
 
-    fs.renameSync( '/app-root/runtime/repo/.openshift/action_hooks/bower_components', '/app-root/runtime/repo/bower_components' );
+exec( 'HOME=/tmp bower install '+ REPO, function ( e ) {
+
+    fs.renameSync( REPO + '.openshift/action_hooks/bower_components', REPO + 'bower_components' );
 
 } );
