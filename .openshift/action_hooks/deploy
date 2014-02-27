@@ -11,9 +11,13 @@ fs.existsSync( REPO + 'server/database.production' ) || fs.linkSync( DATA + 'dat
 fs.existsSync( REPO + 'server/database.development' ) || fs.linkSync( DATA + 'database.development', REPO + 'server/database.development' );
 fs.existsSync( REPO + 'server/email.json' ) || fs.linkSync( DATA + 'email.json', REPO + 'server/email.json' );
 
-exec( 'HOME=/tmp bower install '+ REPO + 'bower.json', function ( e ) {
+exec( 'cd ' + REPO, function( e ){
+    e && console.log( e );
 
-    console.log( e );
-    fs.renameSync( REPO + '.openshift/action_hooks/bower_components', REPO + 'bower_components' );
+    exec( 'HOME=/tmp bower install', function ( e ) {
 
-} );
+        console.log( e );
+        fs.renameSync( REPO + '.openshift/action_hooks/bower_components', REPO + 'bower_components' );
+
+    } );
+} )
