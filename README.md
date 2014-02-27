@@ -9,11 +9,14 @@ enen
 
 安装nodejs依赖和bower依赖
 
-    npm install && bower install
+    npm install
+    bower install
 
 配置以下文件
 
-    app/server/config.js
+    server/database.development
+    server/database.production
+    server/email.json
 
 运行
 
@@ -45,3 +48,6 @@ codemirror
 marked
 angular
 bootstrap
+
+grunt
+bower
