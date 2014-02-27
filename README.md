@@ -29,3 +29,19 @@ enen
 运行`grunt`构建js和css
 
 启动项目
+
+
+感谢：
+
+express
+mongoose
+jade
+passport
+
+requirejs
+jquery
+less
+codemirror
+marked
+angular
+bootstrap
