@@ -1,5 +1,11 @@
 extends layouts/page
 block content
     .container
-        h1 #{title}
-        article.markdown !{content}
+        .row
+            .col-xs-8
+                h1 #{title}
+        .row
+            .col-xs-8.article-meta 作者：#{author.username}
+        .row
+            .col-xs-8
+                .article.markdown !{content}

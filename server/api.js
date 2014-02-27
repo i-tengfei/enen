@@ -53,8 +53,20 @@ module.exports = function ( app, passport ) {
         scope: [],
         failureRedirect : '/login'
     } ), function( req, res ){} );
-    // 百度返回
+
     app.get( '/auth/baidu/callback', passport.authenticate( 'baidu', {
+        failureRedirect: '/login'
+    } ), function( req, res ) {
+        res.send( req.user );
+    } );
+    
+    // Github认证
+    app.get( '/auth/github', passport.authenticate( 'github', {
+        scope: [],
+        failureRedirect : '/login'
+    } ), function( req, res ){} );
+
+    app.get( '/auth/github/callback', passport.authenticate( 'github', {
         failureRedirect: '/login'
     } ), function( req, res ) {
         res.send( req.user );

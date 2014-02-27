@@ -40,6 +40,18 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'a
                 return '/' + params.enen + '-tpl/article-edit'
             }
         } )
+        .when( '/:enen/code', {
+            controller: 'CodeListCtrl',
+            templateUrl: function( params ){
+                return '/' + params.enen + '-tpl/code-list'
+            }
+        } )
+        .when( '/:enen/code/:id', {
+            controller: 'CodeEditCtrl',
+            templateUrl: function( params ){
+                return '/' + params.enen + '-tpl/code-edit'
+            }
+        } )
 
     } ] )
     .controller( 'MainCtrl', [ '$scope', function( $scope ) {
@@ -99,6 +111,27 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'a
                 $location.path( '/' + $routeParams.enen + '/article' );
             } );
         };
+
+    } ] )
+    .controller( 'CodeListCtrl', [ '$scope', function( $scope ){
+
+        $scope.init = function( ){
+            $scope.list( );
+        }
+
+        $scope.list = function( event ){
+            event && $( event.currentTarget ).addClass( 'disabled' );
+            // ArticleModel.query( function( articles ) {
+            //     $scope.articles = articles;
+            //     event && $( event.currentTarget ).removeClass( 'disabled' );
+            // } );
+        }
+
+    } ] )
+    .controller( 'CodeEditCtrl', [ '$scope', function( $scope ){
+
+        $scope.init = function( ){
+        }
 
     } ] );
 

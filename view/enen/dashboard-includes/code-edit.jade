@@ -1,0 +1,7 @@
+#edit.panel.panel-default( data-ng-init='init( )' )
+    .panel-body
+        input.form-control#edit-title( type='text', ng-model='code.title' )
+        #codemirror
+    .panel-footer
+        a.btn.btn-default( href='#{config.dashboard}/code' ) 取消
+        a.btn.btn-primary( ng-click='save( $event )' ) 保存

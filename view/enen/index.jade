@@ -1,7 +1,13 @@
 extends layouts/page
 block content
     .container
-        div 已为您随机加载文章：
-        h1 #{article.title}
-        .article-meta 作者：#{article.author.username}
-        article.markdown !{article.content}
+        .row
+            .col-xs-8 已为您随机加载文章：
+        .row
+            .col-xs-8
+                h1 #{article.title}
+        .row
+            .col-xs-8.article-meta 作者：#{article.author.username}
+        .row
+            .col-xs-8
+                .article.markdown !{article.content}
