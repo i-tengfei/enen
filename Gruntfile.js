@@ -28,7 +28,7 @@ module.exports = function( grunt ) {
         uglifyTask = {},
         lessTask = {
             options: {
-                compress: true
+                cleancss: true
             }
         };
     
