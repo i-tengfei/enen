@@ -1,2 +1,2 @@
 // for openshift
-require( 'server/app' );
+require( './server/app' );
