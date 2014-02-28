@@ -30,7 +30,8 @@ var config = {
     development: _.extend( {
         
         type: 'development',
-        port: 8080,
+        port: process.env.OPENSHIFT_NODEJS_PORT || 3000,
+        id: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
         db: fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( )
     }, basic ),
 
@@ -39,7 +40,8 @@ var config = {
     production: _.extend( {
 
         type: 'production',
-        port: 8080,
+        port: process.env.OPENSHIFT_NODEJS_PORT || 8001,
+        id: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
         db: fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( )
 
     }, basic ),
