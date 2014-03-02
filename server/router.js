@@ -24,6 +24,7 @@ module.exports = function ( app ) {
 
         res.render( 'index', _.extend( data, {
             path: path + 'index',
+            title: '首页',
             article: req.result
         } ) );
 
@@ -32,7 +33,8 @@ module.exports = function ( app ) {
     app.get( '/login', auth.no, function( req, res ){
 
         res.render( 'login', _.extend( data, {
-            path: path + 'login'
+            path: path + 'login',
+            title: '登录'
         } ) );
 
     } );
@@ -40,7 +42,8 @@ module.exports = function ( app ) {
     app.get( '/signup', auth.no, function( req, res ){
 
         res.render( 'signup', _.extend( data, {
-            path: path + 'signup'
+            path: path + 'signup',
+            title: '注册'
         } ) );
 
     } );
@@ -58,7 +61,8 @@ module.exports = function ( app ) {
 
         res.render( 'article-list', _.extend( data, {
             path: path + 'article-list',
-            articles: req.result
+            articles: req.result,
+            title: '文章'
         } ) );
 
     } );
@@ -66,7 +70,8 @@ module.exports = function ( app ) {
     app.get( [ config.dashboard, config.dashboard + '/*' ], auth.yes, function( req, res ){
 
         res.render( 'dashboard', _.extend( data, {
-            path: path + 'dashboard'
+            path: path + 'dashboard',
+            title: '控制台'
         } ) );
 
     } );
