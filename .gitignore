@@ -7,3 +7,4 @@ server/email.json
 cache/
 npm-debug.log
 .bowerrc
+.DS_Store
