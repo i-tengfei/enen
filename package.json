@@ -15,9 +15,6 @@
     "underscore": "~1.5.2",
     "fs-extra": "~0.8.1"
   },
-  "scripts": {
-    "start": "node server/app"
-  },
   "licenses": [
     {
       "type": "MIT",
