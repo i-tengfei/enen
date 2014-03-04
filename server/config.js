@@ -27,8 +27,8 @@ var config = {
     development: _.extend( {
         
         type: 'development',
-        port: process.env.OPENSHIFT_NODEJS_PORT || 3000,
-        ip: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
+        port: process.env.ENEN_PORT || 3000,
+        ip: process.env.ENEN_IP || '127.0.0.1',
         db: fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( )
     }, basic ),
 
@@ -37,8 +37,8 @@ var config = {
     production: _.extend( {
 
         type: 'production',
-        port: process.env.OPENSHIFT_NODEJS_PORT || 8001,
-        ip: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
+        port: process.env.ENEN_PORT || 8001,
+        ip: process.env.ENEN_IP || '127.0.0.1',
         db: fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( )
 
     }, basic ),

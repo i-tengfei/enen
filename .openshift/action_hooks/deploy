@@ -17,6 +17,8 @@ exec( 'HOME=/tmp bower install', { cwd: REPO }, function ( e ) {
     exec( 'grunt', { cwd: REPO }, function ( e ) {
 
         e && console.log( e );
+        env.ENEN_PORT = env.OPENSHIFT_NODEJS_PORT;
+        env.ENEN_IP = env.OPENSHIFT_NODEJS_IP;
 
     } );
 
