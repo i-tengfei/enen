@@ -29,8 +29,8 @@ var config = {
         type: 'development',
         port: process.env.ENEN_PORT || 3000,
         ip: process.env.ENEN_IP || '127.0.0.1',
-        db: fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( )
-        
+        db: fs.existsSync( __dirname + '/database.development' ) ? fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( ) : ''
+
     }, basic ),
 
     testing: {},
@@ -40,7 +40,7 @@ var config = {
         type: 'production',
         port: process.env.ENEN_PORT || 8001,
         ip: process.env.ENEN_IP || '127.0.0.1',
-        db: fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( )
+        db: fs.existsSync( __dirname + '/database.production' ) ? fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( ) : ''
 
     }, basic ),
     
