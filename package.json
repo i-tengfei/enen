@@ -24,9 +24,7 @@
     "grunt-contrib-less": "~0.8.3"
   },
   "scripts": {
-    "start": "node server",
-    "install": "./node_modules/bower/bin/bower install",
-    "postinstall": "./node_modules/grunt-cli/bin/grunt"
+    "install": "./node_modules/bower/bin/bower install && ./node_modules/grunt-cli/bin/grunt"
   },
   "licenses": [
     {
