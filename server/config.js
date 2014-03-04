@@ -30,6 +30,7 @@ var config = {
         port: process.env.ENEN_PORT || 3000,
         ip: process.env.ENEN_IP || '127.0.0.1',
         db: fs.readFileSync( __dirname + '/database.development', 'utf8' ).trim( )
+        
     }, basic ),
 
     testing: {},
