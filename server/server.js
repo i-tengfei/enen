@@ -83,7 +83,7 @@ module.exports = function( ){
     require( './api' )( app, passport );
     require( './router' )( app );
 
-    app.listen( config.port, config.ip );
+    config.ip ? app.listen( config.port, config.ip ) : app.listen( config.port );
 
     return app;
 
