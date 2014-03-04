@@ -13,10 +13,19 @@
     "passport-local": "~0.1.6",
     "passport-baidu": "0.0.1",
     "underscore": "~1.5.2",
-    "fs-extra": "~0.8.1"
+    "fs-extra": "~0.8.1",
+
+    "bower": "*",
+    "grunt-cli": "*",
+    "grunt": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-less": "~0.8.3"
   },
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "licenses": [
     {
@@ -24,16 +33,5 @@
       "url": "http://mit-license.org"
     }
   ],
-  "devDependencies": {
-    "bower": "*",
-    "grunt-cli": "*",
-    "grunt": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-requirejs": "*",
-    "grunt-contrib-connect": "*",
-    "grunt-contrib-less": "~0.8.3",
-    "grunt-contrib-cssmin": "~0.7.0"
-  }
+  "devDependencies": {}
 }
