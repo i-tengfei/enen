@@ -1,8 +1,0 @@
-{
-    "hosts" : "smtp.exmail.qq.com",
-    "port" : 25,
-    "name" : "QQ",
-    "username" : "username@example.com",
-    "password" : "password",
-    "nickname" : "nickname"
-}

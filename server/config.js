@@ -2,8 +2,6 @@ var path = require( 'path' ),
     fs = require( 'fs-extra' ),
     _ = require( 'underscore' );
 
-var email = require( './email' );
-
 var auth = {
     baidu: {
         clientID: 'abcdefg',
@@ -16,7 +14,6 @@ var basic = {
     view: 'enen',
     dashboard: '/enen',
 
-    email: email,
     auth: auth,
     base: path.normalize( __dirname ),
     cache: path.normalize( __dirname + '/../../cache' ),

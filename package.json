@@ -25,6 +25,8 @@
     }
   ],
   "devDependencies": {
+    "bower": "*",
+    "grunt-cli": "*",
     "grunt": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-uglify": "*",
