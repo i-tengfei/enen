@@ -2,25 +2,11 @@ var path = require( 'path' ),
     fs = require( 'fs-extra' ),
     _ = require( 'underscore' );
 
-var auth = {
-    baidu: {
-        clientID: 'abcdefg',
-        clientSecret: 'abcdefg',
-        callbackURL: 'abcdefg'
-    }
-};
-
 var basic = {
-    view: 'enen',
-    dashboard: '/enen',
-
-    auth: auth,
-    base: path.normalize( __dirname ),
+    root: path.normalize( __dirname ),
     cache: path.normalize( __dirname + '/../../cache' ),
     upload: path.normalize( __dirname + '/../../upload' )
 };
-
-
 
 var config = {
 

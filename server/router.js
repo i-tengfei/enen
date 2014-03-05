@@ -7,7 +7,7 @@ var markdown = require( '../bower_components/marked' ),
 
 module.exports = function ( app ) {
     
-    var path = config.type === 'development' ? '/client/' + config.view + '/' : '/';
+    var path = config.type === 'development' ? '/client/' + enen.site.view + '/' : '/';
     var data = {
         config: config
     };
@@ -67,16 +67,19 @@ module.exports = function ( app ) {
 
     } );
 
-    app.get( [ config.dashboard, config.dashboard + '/*' ], auth.yes, function( req, res ){
+    var dashboard = function( req, res ){
 
         res.render( 'dashboard', _.extend( data, {
             path: path + 'dashboard',
             title: '控制台'
         } ) );
 
-    } );
+    };
 
-    app.get( config.dashboard + '-tpl/:tpl', auth.yes, function( req, res ){
+    app.get( enen.site.dashboard, auth.yes, dashboard );
+    app.get( enen.site.dashboard + '/*', auth.yes, dashboard );
+
+    app.get( enen.site.dashboard + '-tpl/:tpl', auth.yes, function( req, res ){
 
         res.render( 'dashboard-includes/' + req.params.tpl, data );
 

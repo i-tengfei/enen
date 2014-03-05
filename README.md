@@ -1,7 +1,7 @@
 enen
 ====
 
-##开发环境部署##
+###开发环境部署
 
 安装开发环境依赖
 
@@ -16,7 +16,6 @@ enen
 
     server/database.development
     server/database.production
-    server/email.json
 
 运行
 
@@ -25,7 +24,7 @@ enen
 享受它吧！
 
 
-##生产环境部署##
+###生产环境部署##
 
 修改`NODE_ENV`为`production`
 
@@ -33,8 +32,11 @@ enen
 
 启动项目
 
+###免费平台
 
-感谢：
+已经兼容支持 Openshift、Heroku nodejsApp平台。
+
+###感谢：
 
 express
 mongoose

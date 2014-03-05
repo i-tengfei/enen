@@ -42,9 +42,9 @@ passport.use(
 
 passport.use(
     new BaiduStrategy( {
-        clientID: config.auth.baidu.clientID,
-        clientSecret: config.auth.baidu.clientSecret,
-        callbackURL: config.auth.baidu.callbackURL
+        clientID: enen.auth.baidu.clientID,
+        clientSecret: enen.auth.baidu.clientSecret,
+        callbackURL: enen.auth.baidu.callbackURL
     },
     function( token, tokenSecret, profile, done ) {
 

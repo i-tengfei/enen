@@ -75,8 +75,6 @@ module.exports = function ( app, passport ) {
     // ========== ========== ======== ========== ========== //
     // ---------- ---------- | User | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
-    app.options( [ '/api/user', '/api/user/:id' ], function( req, res ){ res.send( 200 ) } );
-
     // 列表
     app.get( '/api/user', user.list, function( req, res ){
         res.send( req.result );
@@ -107,8 +105,6 @@ module.exports = function ( app, passport ) {
     // ========== ========== =========== ========== ========== //
     // ---------- ---------- | Article | ---------- ---------- //
     // ========== ========== =========== ========== ========== //
-    app.options( [ '/api/article', '/api/article/:id' ], function( req, res ){ res.send( 200 ) } );
-
     // 列表
     app.get( '/api/article', article.list, function( req, res ){
         res.send( req.result );

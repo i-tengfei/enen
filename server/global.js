@@ -3,7 +3,7 @@ global.config = require( './config' )( process.argv[ 2 ] );
 global.logger = require( 'tracer' ).colorConsole( {
 
     format: [
-        '{{timestamp}} {{title}} {{message}}',{
+        '{{timestamp}} {{title}} {{message}}', {
             warn: '{{timestamp}} {{title}} {{message}}\n    {{file}}:{{line}}',
             error: '{{timestamp}} {{title}} {{message}}\n    {{file}}:{{line}}\n    Call Stack:{{stacklist}}'
         }

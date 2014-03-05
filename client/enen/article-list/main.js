@@ -1,3 +1,3 @@
-require( [ 'client/gallery/code' ], function ( code ) {
+require( [ 'client/gallery/code', 'client/gallery/common' ], function ( code ) {
     code( );
 } );
