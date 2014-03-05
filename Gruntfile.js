@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require( 'fs' );
-var view = require( './server/config' ).data.production.view;
+var view = 'enen';
 
 module.exports = function( grunt ) {
 
