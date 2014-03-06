@@ -2,12 +2,12 @@ extends layouts/page
 block content
     .container
         .row
-            .col-xs-8 已为您随机加载文章：
+            .col-xs-12.col-md-8 已为您随机加载文章：
         .row
-            .col-xs-8
+            .col-xs-12.col-md-8
                 h1 #{article.title}
         .row
-            .col-xs-8.article-meta 作者：#{article.author.username}
+            .col-xs-12.col-md-8.article-meta 作者：#{article.author.username}
         .row
-            .col-xs-8
+            .col-xs-12.col-md-8
                 .article.markdown !{article.content}

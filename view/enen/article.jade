@@ -2,10 +2,10 @@ extends layouts/page
 block content
     .container
         .row
-            .col-xs-8
+            .col-xs-12.col-md-8
                 h1 #{title}
         .row
-            .col-xs-8.article-meta 作者：#{author.username}
+            .col-xs-12.col-md-8.article-meta 作者：#{author.username}
         .row
-            .col-xs-8
+            .col-xs-12.col-md-8
                 .article.markdown !{content}
