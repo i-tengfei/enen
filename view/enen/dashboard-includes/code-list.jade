@@ -2,7 +2,7 @@
     .panel-body
         .btn-group
             a.btn.btn-default( ng-click='list( $event )' ) 刷新
-            a.btn.btn-primary( href='#{config.dashboard}/code/new' ) 新建代码
+            a.btn.btn-primary( href='#{site.dashboard}/code/new' ) 新建代码
     table.table.table-hover.table-striped
         tr
             th.column-name 名称
@@ -14,5 +14,5 @@
             td
                 a.btn.btn-link.btn-sm( href='/user/{{ code.author._id }}', target='_blank' ) {{ code.author.username }}
             td
-                a.btn.btn-link.btn-sm( href='#{config.dashboard}/code/{{ code._id }}' ) 编辑
+                a.btn.btn-link.btn-sm( href='#{site.dashboard}/code/{{ code._id }}' ) 编辑
                 a.btn.btn-link.btn-sm( href='javascript:', ng-click='remove( code )' ) 删除

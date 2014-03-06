@@ -1,0 +1,65 @@
+.row
+    .col-sm-6
+        tabset( data-ng-init='init( )' )
+            tab#site( heading='站点设置' )
+                form.form-horizontal( role='form', ng-init='site={}' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 名　　称
+                            input#site-name.form-control( type='text', ng-init='site.name="#{site.name}"', ng-model='site.name' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 模　　版
+                            input#site-view.form-control( type='text', ng-init='site.view="#{site.view}"', ng-model='site.view' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 控制后台
+                            input#site-dashboard.form-control( type='text', ng-init='site.dashboard="#{site.dashboard}"', ng-model='site.dashboard', popover-title='控制台地址', popover='如果填写的是"/enen"，则控制台地址便是："http://www.example.com/enen"', popover-trigger='focus', popover-placement='top' )
+            tab( heading='邮箱设置' )
+                form.form-horizontal( role='form', ng-init='email={}' )
+                    .col-sm-7
+                        p 发件邮箱设置
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 名　　称
+                            input#email-name.form-control( type='text', ng-init='email.name="#{email.name}"', ng-model='email.name' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 主　　机
+                            input#email-hosts.form-control( type='text', ng-init='email.hosts="#{email.hosts}"', ng-model='email.hosts' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 端　　口
+                            input#email-port.form-control( type='text', ng-init='email.port="#{email.port}"', ng-model='email.port' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 登录帐号
+                            input#email-username.form-control( type='text', ng-init='email.username="#{email.username}"', ng-model='email.username' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 登录密码
+                            input#email-password.form-control( type='text', ng-init='email.password="#{email.password}"', ng-model='email.password' )
+                    .form-group.col-sm-7
+                        .input-group
+                            .input-group-addon 昵　　称
+                            input#email-nickname.form-control( type='text', ng-init='email.nickname="#{email.nickname}"', ng-model='email.nickname' )
+            tab( heading='Auth认证设置' )
+                form.form-horizontal( role='form', ng-init='auth={}' )
+                    - each item, key in auth
+                        h3.col-sm-7( ng-init='auth.#{key}={}' ) {{auth.#{key}.name}}
+                        .form-group.col-sm-7
+                            .input-group
+                                .input-group-addon 名　　称
+                                input.form-control( id='auth-#{key}-name', type='text', ng-init='auth.#{key}.name="#{item.name}"', ng-model='auth.#{key}.name' )
+                        .form-group.col-sm-7
+                            .input-group
+                                .input-group-addon 唯一标识
+                                input.form-control( id='auth-#{key}-clientID', type='text', ng-init='auth.#{key}.clientID="#{item.clientID}"', ng-model='auth.#{key}.clientID' )
+                        .form-group.col-sm-7
+                            .input-group
+                                .input-group-addon 密　　保
+                                input.form-control( id='auth-#{key}-clientSecret', type='text', ng-init='auth.#{key}.clientSecret="#{item.clientSecret}"', ng-model='auth.#{key}.clientSecret' )
+                        .form-group.col-sm-7
+                            .input-group
+                                .input-group-addon 返回链接
+                                input.form-control( id='auth-#{key}-callbackURL', type='text', ng-init='auth.#{key}.callbackURL="#{item.callbackURL}"', ng-model='auth.#{key}.callbackURL' )

@@ -7,7 +7,8 @@ html( lang='zh' )
                 #user
                     a#menu-toggle
                         i.fa.fa-bars
-                    #user-name 一路走红
+                    #user-name
+                        a( href='/user/#{user._id}', target='_blank' ) #{user.username}
                     #user-avatar
                         img
                 ul.nav.nav-pills.nav-stacked
@@ -16,16 +17,20 @@ html( lang='zh' )
                             i.fa.fa-home
                             span 首页
                     li
-                        a( href='#{config.dashboard}/article' )
+                        a( href='#{site.dashboard}/article' )
                             i.fa.fa-pencil-square
                             span 文章
                     li
-                        a( href='#{config.dashboard}/code' )
+                        a( href='#{site.dashboard}/code' )
                             i.fa.fa-code
                             span 代码
                     li
                         a( href='javascript:' )
                             i.fa.fa-picture-o
                             span 图库
+                    li
+                        a( href='#{site.dashboard}/setting' )
+                            i.fa.fa-cog
+                            span 设置
             #main
                 block content

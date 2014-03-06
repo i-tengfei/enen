@@ -11,7 +11,7 @@ module.exports = function( callback ){
 
     enen( function( result ){
         global.enen = result;
-        callback( mongoose.connection );
+        callback( result, mongoose.connection );
     } )
 
 };

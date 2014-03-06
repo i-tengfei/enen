@@ -1,6 +1,10 @@
 enen
 ====
 
+嗯嗯，一个简单的nodejs博客程序。
+
+[演示站](http://enen.herokuapp.com)
+
 ###开发环境部署
 
 安装开发环境依赖

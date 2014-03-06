@@ -1,4 +1,4 @@
-require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, CodeMirror, markdown, angular ) {
+require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, CodeMirror, markdown, angular ) {
 
     $( '#container' ).css( 'padding-left', $( '#menu' ).hasClass( 'menu-show' ) ? 200 : 40 );
     
@@ -12,7 +12,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'a
         }
     } );
 
-    angular.module( 'dashboard', [ 'ngResource', 'ngRoute' ] )
+    angular.module( 'dashboard', [ 'ngResource', 'ngRoute', 'ui.bootstrap' ] )
     .factory( 'ArticleModel', [ '$resource', function( $resource ) {
         return $resource( '/api/article/:id', { id: '@_id' }, {
             'update': { method: 'PUT' }
@@ -50,6 +50,12 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'a
             controller: 'CodeEditCtrl',
             templateUrl: function( params ){
                 return '/' + params.enen + '-tpl/code-edit'
+            }
+        } )
+        .when( '/:enen/setting', {
+            controller: 'SettingCtrl',
+            templateUrl: function( params ){
+                return '/' + params.enen + '-tpl/setting'
             }
         } )
 
@@ -131,6 +137,13 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-resource', 'a
     .controller( 'CodeEditCtrl', [ '$scope', function( $scope ){
 
         $scope.init = function( ){
+        }
+
+    } ] )
+    .controller( 'SettingCtrl', [ '$scope', function( $scope ){
+        
+        $scope.init = function( ){
+            
         }
 
     } ] );

@@ -1,18 +1,25 @@
 #list.panel.panel-default( data-ng-init='init( )' )
+    .panel-heading 文章列表
     .panel-body
         .btn-group
             a.btn.btn-default( ng-click='list( $event )' ) 刷新
-            a.btn.btn-primary( href='#{config.dashboard}/article/new' ) 新建文章
+            a.btn.btn-primary( href='#{site.dashboard}/article/new' ) 新建文章
     table.table.table-hover.table-striped
         tr
+            th.column-select
+                input( type='checkbox' )
             th.column-title 标题
             th.column-author 作者
             th.column-actions 功能
         tr( ng-repeat='article in articles' )
             td
+                input( type='checkbox' )
+            td
                 a.btn.btn-link.btn-sm( href='/article/{{ article._id }}', target='_blank' ) {{ article.title }}
             td
                 a.btn.btn-link.btn-sm( href='/user/{{ article.author._id }}', target='_blank' ) {{ article.author.username }}
             td
-                a.btn.btn-link.btn-sm( href='#{config.dashboard}/article/{{ article._id }}' ) 编辑
+                a.btn.btn-link.btn-sm( href='#{site.dashboard}/article/{{ article._id }}' ) 编辑
                 a.btn.btn-link.btn-sm( href='javascript:', ng-click='remove( article )' ) 删除
+    .panel-footer
+        pagination.pagination-sm( total-items='11', page='page', boundary-links='true', direction-links='false', rotate='false', first-text='首页', last-text='尾页' )

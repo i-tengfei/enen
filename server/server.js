@@ -3,13 +3,15 @@ var express = require( 'express' ),
     mongoStore = require( 'connect-mongo' )( express ),
     MemStore = express.session.MemoryStore;
 
-module.exports = function( ){
+module.exports = function( enen ){
 
     var app = express( );
 
     app.set( 'showStackError', true );
     app.set( 'views', config.root + '/../view/' + enen.site.view );
     app.set( 'view engine', 'jade' );
+
+    app.locals( enen );
     
     app.use( express.compress( ) );
     app.use( express.cookieParser( ) );

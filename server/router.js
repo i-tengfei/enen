@@ -5,12 +5,13 @@ var markdown = require( '../bower_components/marked' ),
     auth = require( './controllers/auth' ),
     _ = require( 'underscore' );
 
+markdown.setOptions( {
+    sanitize: true
+} );
+
 module.exports = function ( app ) {
-    
-    var path = config.type === 'development' ? '/client/' + enen.site.view + '/' : '/';
-    var data = {
-        config: config
-    };
+
+    var path = config.type === 'development' ? '/client/' + app.locals.site.view + '/' : '/';
 
     app.get( '/', function( req, res, next ){
         
@@ -18,70 +19,71 @@ module.exports = function ( app ) {
             result.content = markdown.parse( result.content );
             req.result = result;
             next( err );
-        } )
+        } );
 
     }, function( req, res ){
 
-        res.render( 'index', _.extend( data, {
+        res.render( 'index', {
             path: path + 'index',
             title: '首页',
             article: req.result
-        } ) );
+        } );
 
     } );
 
     app.get( '/login', auth.no, function( req, res ){
 
-        res.render( 'login', _.extend( data, {
+        res.render( 'login', {
             path: path + 'login',
             title: '登录'
-        } ) );
+        } );
 
     } );
 
     app.get( '/signup', auth.no, function( req, res ){
 
-        res.render( 'signup', _.extend( data, {
+        res.render( 'signup', {
             path: path + 'signup',
             title: '注册'
-        } ) );
+        } );
 
     } );
 
     app.get( '/article/:id', article.load, function( req, res ){
 
         req.result.content = markdown.parse( req.result.content );
-        res.render( 'article', _.extend( data, _.extend( req.result, {
+        res.render( 'article', _.extend( req.result, {
             path: path + 'article'
-        } ) ) );
+        } ) );
 
     } );
 
     app.get( '/article', article.list, function( req, res ){
 
-        res.render( 'article-list', _.extend( data, {
+        res.render( 'article-list', {
             path: path + 'article-list',
             articles: req.result,
             title: '文章'
-        } ) );
+        } );
 
     } );
 
     var dashboard = function( req, res ){
 
-        res.render( 'dashboard', _.extend( data, {
+        res.render( 'dashboard', {
             path: path + 'dashboard',
-            title: '控制台'
-        } ) );
+            title: '控制台',
+            user: req.user
+        } );
 
     };
 
-    app.get( enen.site.dashboard, auth.yes, dashboard );
-    app.get( enen.site.dashboard + '/*', auth.yes, dashboard );
+    app.get( app.locals.site.dashboard, auth.yes, dashboard );
+    app.get( app.locals.site.dashboard + '/*', auth.yes, dashboard );
 
-    app.get( enen.site.dashboard + '-tpl/:tpl', auth.yes, function( req, res ){
+    app.get( app.locals.site.dashboard + '-tpl/:tpl', auth.yes, function( req, res ){
 
-        res.render( 'dashboard-includes/' + req.params.tpl, data );
+        res.render( 'dashboard-includes/' + req.params.tpl );
 
     } );
 

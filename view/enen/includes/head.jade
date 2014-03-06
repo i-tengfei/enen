@@ -1,6 +1,6 @@
 head
     meta( charset='utf-8' )
-    title #{title}
+    title #{title} | #{site.name}
     meta( name='viewport', content='width=device-width, initial-scale=1.0' )
     - if( path.slice( 0, 7 ) === '/client' )
         link( rel='stylesheet/less', type='text/css', href='#{path}/main.less' )

@@ -15,6 +15,7 @@ require.config( {
         'angular': 'bower_components/angular/angular',
         'angular-route': 'bower_components/angular-route/angular-route',
         'angular-resource': 'bower_components/angular-resource/angular-resource',
+        'angular-bootstrap': 'bower_components/angular-bootstrap/ui-bootstrap-tpls',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap'
     },
     shim: {
@@ -50,6 +51,10 @@ require.config( {
         },
         'angular-resource': {
             deps: [ 'angular' ],
+            exports: 'angular'
+        },
+        'angular-bootstrap': {
+            deps: [ 'angular', 'bootstrap' ],
             exports: 'angular'
         },
         'angular-route': {

@@ -53,6 +53,13 @@ module.exports = function( callback ){
                 },
                 auth: {
                     baidu: {
+                        name: '百度',
+                        clientID: 'clientID',
+                        clientSecret: 'clientSecret',
+                        callbackURL: 'callbackURL'
+                    },
+                    github: {
+                        name: 'Github',
                         clientID: 'clientID',
                         clientSecret: 'clientSecret',
                         callbackURL: 'callbackURL'
