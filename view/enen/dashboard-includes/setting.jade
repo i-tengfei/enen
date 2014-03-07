@@ -1,8 +1,8 @@
 .row
-    .col-sm-6
-        tabset( data-ng-init='init( )' )
+    .col-md-6
+        tabset( ng-init='init( )' )
             tab#site( heading='站点设置' )
-                form.form-horizontal( role='form', ng-init='site={}' )
+                form.form-horizontal( role='form' )
                     .form-group.col-sm-7
                         .input-group
                             .input-group-addon 名　　称
@@ -16,7 +16,7 @@
                             .input-group-addon 控制后台
                             input#site-dashboard.form-control( type='text', ng-init='site.dashboard="#{site.dashboard}"', ng-model='site.dashboard', popover-title='控制台地址', popover='如果填写的是"/enen"，则控制台地址便是："http://www.example.com/enen"', popover-trigger='focus', popover-placement='top' )
             tab( heading='邮箱设置' )
-                form.form-horizontal( role='form', ng-init='email={}' )
+                form.form-horizontal( role='form' )
                     .col-sm-7
                         p 发件邮箱设置
                     .form-group.col-sm-7
@@ -44,7 +44,7 @@
                             .input-group-addon 昵　　称
                             input#email-nickname.form-control( type='text', ng-init='email.nickname="#{email.nickname}"', ng-model='email.nickname' )
             tab( heading='Auth认证设置' )
-                form.form-horizontal( role='form', ng-init='auth={}' )
+                form.form-horizontal( role='form' )
                     - each item, key in auth
                         h3.col-sm-7( ng-init='auth.#{key}={}' ) {{auth.#{key}.name}}
                         .form-group.col-sm-7
@@ -63,3 +63,7 @@
                             .input-group
                                 .input-group-addon 返回链接
                                 input.form-control( id='auth-#{key}-callbackURL', type='text', ng-init='auth.#{key}.callbackURL="#{item.callbackURL}"', ng-model='auth.#{key}.callbackURL' )
+    .col-md-6
+        .btn-group.btn-group.pull-right
+            a.btn.btn-default( href='#{site.dashboard}' ) 取消
+            a.btn.btn-primary( ng-click='save( $event )' ) 保存

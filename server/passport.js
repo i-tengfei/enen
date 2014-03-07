@@ -1,7 +1,8 @@
 var mongoose = require( 'mongoose' ),
     passport = require( 'passport' ),
     LocalStrategy = require( 'passport-local').Strategy,
-    BaiduStrategy = require( 'passport-baidu').Strategy;
+    BaiduStrategy = require( 'passport-baidu').Strategy,
+    GithubStrategy = require( 'passport-github').Strategy;
 
 var User = mongoose.model( 'user' );
 
@@ -50,7 +51,23 @@ passport.use(
 
         profile._json.id = profile.id;
 
-        User.findOrCreate( { 'baidu.id': profile.id }, { baidu: profile._json, username: profile.username, authToken: token }, { upsert: true }, function ( err, user ) {
+        User.findOrCreate( { 'baidu.id': profile.id }, { baidu: profile, username: profile.username, authToken: token }, { upsert: true }, function ( err, user ) {
+            return done( err, user );
+        } );
+
+    }
+) );
+
+passport.use(
+    new GithubStrategy( {
+        clientID: enen.auth.github.clientID,
+        clientSecret: enen.auth.github.clientSecret,
+        callbackURL: enen.auth.github.callbackURL
+    },
+    function( token, tokenSecret, profile, done ) {
+
+        profile._json.id = profile.id;
+        User.findOrCreate( { 'github.id': profile.id }, { github: profile, username: profile.username, authToken: token }, { upsert: true }, function ( err, user ) {
             return done( err, user );
         } );
 

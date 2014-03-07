@@ -23,7 +23,7 @@ EnEnSchema.set( 'toJSON',  {
 EnEnSchema.statics = {
 
     load: function ( id, cb ) {
-        this.findById( id ).exec( cb );
+        this.findOne( cb );
     }
 
 };
@@ -67,7 +67,9 @@ module.exports = function( callback ){
                 }
             } );
 
-            callback( enen.toJSON( ) );
+            enen.save( function( err, result ){
+                callback( result.toJSON( ) );
+            } );
 
         }else{
 

@@ -1,7 +1,7 @@
-require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route', 'client/gallery/dashboard' ], function ( $, CodeMirror, markdown, angular ) {
+require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route' ], function ( $, CodeMirror, markdown, angular ) {
 
-    $( '#container' ).css( 'padding-left', $( '#menu' ).hasClass( 'menu-show' ) ? 200 : 40 );
-    
+
+    // 菜单展开切换
     $( '#menu-toggle' ).on( 'click', function( ){
         if( $( '#menu' ).hasClass( 'menu-show' ) ){
             $( '#menu' ).removeClass( 'menu-show' ).addClass( 'menu-hide' );
@@ -12,9 +12,21 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
         }
     } );
 
+    $( '#container' ).css( 'padding-left', $( '#menu' ).hasClass( 'menu-show' ) ? 200 : 40 );
+
+    function navActive( id ){
+        $( '#menu .nav li' ).removeClass( 'active' );
+        $( '#nav-item-' + id ).addClass( 'active' );
+    }
+
     angular.module( 'dashboard', [ 'ngResource', 'ngRoute', 'ui.bootstrap' ] )
     .factory( 'ArticleModel', [ '$resource', function( $resource ) {
         return $resource( '/api/article/:id', { id: '@_id' }, {
+            'update': { method: 'PUT' }
+        } );
+    } ] )
+    .factory( 'ShowModel', [ '$resource', function( $resource ) {
+        return $resource( '/api/show/:id', { id: '@_id' }, {
             'update': { method: 'PUT' }
         } );
     } ] )
@@ -25,37 +37,50 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
         .when( '/:enen', {
             controller: 'MainCtrl',
             templateUrl: function( params ){
+                navActive( 'main' );
                 return '/' + params.enen + '-tpl/main'
             }
         } )
         .when( '/:enen/article', {
             controller: 'ArticleListCtrl',
             templateUrl: function( params ){
+                navActive( 'article' );
                 return '/' + params.enen + '-tpl/article-list'
             }
         } )
         .when( '/:enen/article/:id', {
             controller: 'ArticleEditCtrl',
             templateUrl: function( params ){
+                navActive( 'article' );
                 return '/' + params.enen + '-tpl/article-edit'
             }
         } )
         .when( '/:enen/code', {
             controller: 'CodeListCtrl',
             templateUrl: function( params ){
+                navActive( 'code' );
                 return '/' + params.enen + '-tpl/code-list'
             }
         } )
         .when( '/:enen/code/:id', {
             controller: 'CodeEditCtrl',
             templateUrl: function( params ){
+                navActive( 'code' );
                 return '/' + params.enen + '-tpl/code-edit'
             }
         } )
         .when( '/:enen/setting', {
             controller: 'SettingCtrl',
             templateUrl: function( params ){
+                navActive( 'setting' );
                 return '/' + params.enen + '-tpl/setting'
+            }
+        } )
+        .when( '/:enen/show', {
+            controller: 'ShowListCtrl',
+            templateUrl: function( params ){
+                navActive( 'show' );
+                return '/' + params.enen + '-tpl/show-list'
             }
         } )
 
@@ -123,7 +148,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
 
         $scope.init = function( ){
             $scope.list( );
-        }
+        };
 
         $scope.list = function( event ){
             event && $( event.currentTarget ).addClass( 'disabled' );
@@ -131,20 +156,42 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
             //     $scope.articles = articles;
             //     event && $( event.currentTarget ).removeClass( 'disabled' );
             // } );
-        }
+        };
 
     } ] )
     .controller( 'CodeEditCtrl', [ '$scope', function( $scope ){
 
         $scope.init = function( ){
-        }
+        };
 
     } ] )
     .controller( 'SettingCtrl', [ '$scope', function( $scope ){
         
+        $scope.site = {};
+        $scope.email = {};
+        $scope.auth = {};
+
         $scope.init = function( ){
 
-        }
+        };
+
+        $scope.save = function( event ){
+            event && $( event.currentTarget ).addClass( 'disabled' );
+            $.ajax( {
+                url: '/api/enen',
+                type: 'put',
+                data: { site: $scope.site, email: $scope.email, auth: $scope.auth }
+            } ).done( function( ){
+                event && $( event.currentTarget ).removeClass( 'disabled' );
+            } )
+        };     
+
+    } ] )
+    .controller( 'ShowListCtrl', [ '$scope', function( $scope ){
+        
+        $scope.init = function( ){
+
+        };
 
     } ] );
 

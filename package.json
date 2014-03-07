@@ -14,14 +14,14 @@
     "passport-baidu": "0.0.1",
     "underscore": "~1.5.2",
     "fs-extra": "~0.8.1",
-
     "bower": "*",
     "grunt-cli": "*",
     "grunt": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-requirejs": "*",
-    "grunt-contrib-less": "~0.8.3"
+    "grunt-contrib-less": "~0.8.3",
+    "passport-github": "~0.1.5"
   },
   "scripts": {
     "start": "node server",

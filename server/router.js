@@ -26,7 +26,8 @@ module.exports = function ( app ) {
         res.render( 'index', {
             path: path + 'index',
             title: '首页',
-            article: req.result
+            article: req.result,
+            user: req.user
         } );
 
     } );
@@ -53,7 +54,8 @@ module.exports = function ( app ) {
 
         req.result.content = markdown.parse( req.result.content );
         res.render( 'article', _.extend( req.result, {
-            path: path + 'article'
+            path: path + 'article',
+            user: req.user
         } ) );
 
     } );
@@ -63,7 +65,8 @@ module.exports = function ( app ) {
         res.render( 'article-list', {
             path: path + 'article-list',
             articles: req.result,
-            title: '文章'
+            title: '文章',
+            user: req.user
         } );
 
     } );

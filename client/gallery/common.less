@@ -41,3 +41,22 @@ button::-moz-focus-inner {
     font-weight: normal;
     font-style: normal;
 }
+
+::-webkit-scrollbar {
+    width: 6px; 
+    background: #FFF;
+}
+::-webkit-scrollbar-button { 
+    display: none;
+}
+::-webkit-scrollbar-track {
+    background: #FFF;
+}
+::-webkit-scrollbar-thumb {
+    background: @color2;
+    border-radius:2px;
+    -webkit-border-radius:2px;
+}
+::-webkit-scrollbar-thumb:active {
+    background: @color1;
+}

@@ -3,40 +3,34 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
         #hidden
             .row#login-panel
                 .col-md-3.col-xs-12
-                    .row
+                    form.row#header-login-form
                         .form-group.col-md-12
                             .input-group.input-group-sm
-                                .input-group-addon 用户名
-                                input#username.form-control( type='text' )
+                                .input-group-addon 用户名／邮箱
+                                input.username.form-control( type='text' )
                         .form-group.col-md-12
                             .input-group.input-group-sm
-                                .input-group-addon 密　码
-                                input#password.form-control( type='text' )
+                                .input-group-addon 　密　　码　
+                                input.password.form-control( type='password' )
                         .form-group.col-md-12
-                            .btn-group( data-toggle='buttons' )
-                                label.btn.btn-default.btn-sm
-                                    input#o1( type='radio' name='remember' )
-                                    span 记住
-                                label.btn.btn-default.btn-sm
-                                    input#o2( type='radio' name='remember' )
-                                    span 取消
+                            a.btn.btn-default.btn-sm( data-toggle='button' ) 记住
                         .col-md-12
-                            a.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' ) 　登　录　
+                            input#login-panel-btn.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' type='submit' value='　登　录　' )
             .row#signup-panel
                 .col-md-3.col-xs-12
                     .row
                         .form-group.col-md-12
                             .input-group.input-group-sm
                                 .input-group-addon 用户名
-                                input#username.form-control( type='text' )
+                                input.username.form-control( type='text' )
                         .form-group.col-md-12
                             .input-group.input-group-sm
                                 .input-group-addon 邮　箱
-                                input#email.form-control( type='text' )
+                                input.email.form-control( type='text' )
                         .form-group.col-md-12
                             .input-group.input-group-sm
                                 .input-group-addon 密　码
-                                input#password.form-control( type='text' )
+                                input.password.form-control( type='password' )
                         .col-md-12
                             a.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' ) 　注　册　
         .navbar-header
@@ -48,16 +42,21 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
             a#name-logo.navbar-brand( href='/' ) 嗯嗯
         .navbar-collapse.collapse
             ul.nav.navbar-nav
+                li
+                    a( href='/show' ) 广场
                 li.active
                     a( href='/article' ) 文章
                 li
                     a 测试
                 li
                     a 测试
+            ul.nav.navbar-nav.navbar-right#nav-user
+                - if( user ){
                 li
-                    a 测试
-            ul.nav.navbar-nav.navbar-right
+                    button#user-btn.btn.btn-default.navbar-btn.btn-sm #{user.username}
+                - }else{
                 li
-                    button#login-btn.btn.btn-default.navbar-btn.btn-sm( data-toggle='button' ) 登　录
+                    button#login-btn.btn.btn-default.navbar-btn.btn-sm 登　录
                 li
-                    button#signup-btn.btn.btn-default.navbar-btn.btn-sm( data-toggle='button' ) 注　册
+                    button#signup-btn.btn.btn-default.navbar-btn.btn-sm 注　册
+                -}

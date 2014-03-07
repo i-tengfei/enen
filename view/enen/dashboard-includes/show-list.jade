@@ -1,25 +1,33 @@
 #list.panel.panel-default( data-ng-init='init( )' )
-    .panel-heading 文章列表
+    .panel-heading 列表
     .panel-body
         .btn-group.btn-group-sm
             a.btn.btn-default( ng-click='list( $event )' ) 刷新
             a.btn.btn-default 删除
-            a.btn.btn-primary( href='#{site.dashboard}/article/new' ) 创建
+            a.btn.btn-primary( href='#{site.dashboard}/article/new' ) 创建   
     .table-responsive
         table.table.table-hover.table-striped
             tr
                 th.column-select
                     a.btn.btn-default.btn-xs( data-toggle='button' ) 全选
-                th 标题
-                th 作者
+                th.column-thumbnail 预览
+                th 名称
+                th 文件
                 th 操作
-            tr( ng-repeat='article in articles' )
+            tr
                 td
                     a.btn.btn-default.btn-xs( data-toggle='button' ) 选择
                 td
-                    a( href='/article/{{ article._id }}', target='_blank' ) {{ article.title }}
+                    a.thumbnail
+                        img( src='http://www.baidu.com/img/bdlogo.gif' )
                 td
-                    a( href='/user/{{ article.author._id }}', target='_blank' ) {{ article.author.username }}
+                    a( href='', target='_blank' ) 这是一个挺长的测试标题
+                td
+                    .btn-group-vertical.btn-group-xs
+                        a.btn.btn-default main.html
+                        a.btn.btn-default main.css
+                        a.btn.btn-default main.js
+                        a.btn.btn-default /xxx/jquery.js
                 td
                     .btn-group
                         a.btn.btn-default.btn-xs( href='#{site.dashboard}/article/{{ article._id }}' type='button' ) 修改

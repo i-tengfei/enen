@@ -1,4 +1,5 @@
 var Controller = require( './controllers/controller' ),
+    enen = Controller( 'enen' ),
     user = Controller( 'user' ),
     article = Controller( 'article' ),
     picture = Controller( 'picture' ),
@@ -12,6 +13,22 @@ module.exports = function ( app, passport ) {
             app[ x ]( url, middleware, callback );
         } );
     };
+
+    // ========== ========== ======== ========== ========== //
+    // ---------- ---------- | EnEn | ---------- ---------- //
+    // ========== ========== ======== ========== ========== //
+    // 查
+    app.get( '/api/enen', [ auth.yes,/* auth.admin,*/ enen.load ], function( req, res ){
+        global.enen = req.result.toJSON( );
+        app.locals( global.enen );
+        res.send( global.enen );
+    } );
+    // 改
+    app.save( [ 'put', 'post' ], '/api/enen', [ auth.yes,/* auth.admin,*/ enen.load, enen.update ], function( req, res ){
+        global.enen = req.result.toJSON( );
+        app.locals( global.enen );
+        res.send( global.enen );
+    } );
 
     // ========== ========== ======== ========== ========== //
     // ---------- ---------- | Auth | ---------- ---------- //
@@ -54,7 +71,7 @@ module.exports = function ( app, passport ) {
         failureRedirect : '/login'
     } ), function( req, res ){} );
 
-    app.get( '/auth/baidu/callback', passport.authenticate( 'baidu', {
+    app.get( app.locals.auth.baidu.callbackURL, passport.authenticate( 'baidu', {
         failureRedirect: '/login'
     } ), function( req, res ) {
         res.send( req.user );
@@ -62,11 +79,11 @@ module.exports = function ( app, passport ) {
     
     // Github认证
     app.get( '/auth/github', passport.authenticate( 'github', {
-        scope: [],
+        scope: [ 'gist' ],
         failureRedirect : '/login'
     } ), function( req, res ){} );
 
-    app.get( '/auth/github/callback', passport.authenticate( 'github', {
+    app.get( app.locals.auth.github.callbackURL, passport.authenticate( 'github', {
         failureRedirect: '/login'
     } ), function( req, res ) {
         res.send( req.user );

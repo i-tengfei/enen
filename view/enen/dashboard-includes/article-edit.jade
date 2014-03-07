@@ -1,7 +1,14 @@
-#edit.panel.panel-default( data-ng-init='init( )' )
-    .panel-body
-        input.form-control#article-title( type='text', ng-model='article.title' )
-        #codemirror
-    .panel-footer
-        a.btn.btn-default( href='#{site.dashboard}/article' ) 取消
-        a.btn.btn-primary( ng-click='save( $event )' ) 保存
+.row( data-ng-init='init( )' )
+    .col-md-4
+        .input-group.input-group
+            .input-group-addon 　标题　
+            input.form-control#article-title( type='text', ng-model='article.title' )
+    .col-md-8
+        .panel.panel-default#article-body
+            .panel-body
+                #codemirror
+.row
+    .col-md-12
+        .btn-group.btn-group.pull-right
+            a.btn.btn-default( href='#{site.dashboard}/article' ) 取消
+            a.btn.btn-primary( ng-click='save( $event )' ) 保存

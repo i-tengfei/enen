@@ -14,6 +14,7 @@ var UserSchema = new Schema( {
     
     authToken: { type: String, default: '' },
     baidu: {},
+    github: {},
     
     createTime: { type : Date, default : Date.now( ) },
     updateTime: { type : Date, default : Date.now( ) },
@@ -32,9 +33,11 @@ UserSchema.set( 'toJSON',  {
 } );
 
 UserSchema.pre( 'save', function( next ) {
-
+    
     if( !this.username ){
         next( error( 403, '用户名不能为空' ) );
+    }else if( this.authToken ){
+        next( );
     }else if( /[^\w\u4e00-\u9fa5_-]/.test( this.username ) ){
         next( error( 403, '用户名格式不正确' ) );
     }else if( !this.password ){
@@ -45,12 +48,12 @@ UserSchema.pre( 'save', function( next ) {
         next( error( 403, '邮箱不能为空' ) );
     }else if( !/^(?:[a-zA-Z0-9]+[_\-\+\.]?)*[a-zA-Z0-9]+@(?:([a-zA-Z0-9]+[_\-]?)*[a-zA-Z0-9]+\.)+([a-zA-Z]{2,})+$/.test( this.email ) ){
         next( error( 403, '邮箱格式不正确' ) );
-    }else if ( this.isNew ){ 
-       this.salt = this.makeSalt( );
-       this.password = this.encryptPassword( this.password );
-       next( );
+    }else{ 
+        this.salt = this.makeSalt( );
+        this.password = this.encryptPassword( this.password );
+        next( );
     }
-
+    
 } );
 
 UserSchema.methods = {
