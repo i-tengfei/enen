@@ -1,4 +1,4 @@
-require( [ 'jquery', 'client/gallery/common' ], function ( $ ) {
+require( [ 'jquery', 'client/gallery/front' ], function ( $ ) {
 
     
 

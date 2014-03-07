@@ -1,5 +1,30 @@
 @import "common.less";
 
+@hh: 180px;
+
+#header{
+    margin-top: -@hh;
+    height: @hh + 50;
+    margin-bottom: -50px;
+}
+
+#content{
+    margin-top: 70px;
+}
+
+#hidden{
+    height: @hh - 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #E0E0E0;
+    .form-group{
+        margin-bottom: 10px;
+    }
+}
+
+#login-panel, #signup-panel{
+    display: none;
+}
+
 .navbar-enen{
     background-color: #FFF;
     border: 0;
@@ -15,6 +40,13 @@
                 }
             }
         }
+        .navbar-btn{
+            margin-left: 10px;
+        }
+    }
+    .navbar-collapse{
+        background: #FFF;
+        border-bottom: 1px solid #E0E0E0;
     }
 }
 
@@ -24,4 +56,13 @@
     line-height: 30px;
     height: 50px;
     padding: 10px;
+}
+
+#footer{
+    padding-top: 40px;
+    padding-bottom: 30px;
+    margin-top: 60px;
+    color: #777;
+    text-align: center;
+    border-top: 1px solid #E5E5E5;
 }

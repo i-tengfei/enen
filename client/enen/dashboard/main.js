@@ -1,4 +1,4 @@
-require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, CodeMirror, markdown, angular ) {
+require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route', 'client/gallery/dashboard' ], function ( $, CodeMirror, markdown, angular ) {
 
     $( '#container' ).css( 'padding-left', $( '#menu' ).hasClass( 'menu-show' ) ? 200 : 40 );
     
@@ -143,7 +143,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
     .controller( 'SettingCtrl', [ '$scope', function( $scope ){
         
         $scope.init = function( ){
-            
+
         }
 
     } ] );

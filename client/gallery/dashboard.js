@@ -1,4 +1,4 @@
-define( [ 'jquery', './common' ], function ( $ ) {
+define( [ 'jquery', 'bootstrap' ], function ( $ ) {
 
     $( '#menu-toggle' ).on( 'click', function( ){
         if( $( '#menu' ).hasClass( 'menu-show' ) ){

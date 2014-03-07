@@ -1,7 +1,46 @@
-header#header.navbar.navbar-default.navbar-enen.navbar-static-top( role='navigation' )
+header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigation' )
     .container
+        #hidden
+            .row#login-panel
+                .col-md-3.col-xs-12
+                    .row
+                        .form-group.col-md-12
+                            .input-group.input-group-sm
+                                .input-group-addon 用户名
+                                input#username.form-control( type='text' )
+                        .form-group.col-md-12
+                            .input-group.input-group-sm
+                                .input-group-addon 密　码
+                                input#password.form-control( type='text' )
+                        .form-group.col-md-12
+                            .btn-group( data-toggle='buttons' )
+                                label.btn.btn-default.btn-sm
+                                    input#o1( type='radio' name='remember' )
+                                    span 记住
+                                label.btn.btn-default.btn-sm
+                                    input#o2( type='radio' name='remember' )
+                                    span 取消
+                        .col-md-12
+                            a.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' ) 　登　录　
+            .row#signup-panel
+                .col-md-3.col-xs-12
+                    .row
+                        .form-group.col-md-12
+                            .input-group.input-group-sm
+                                .input-group-addon 用户名
+                                input#username.form-control( type='text' )
+                        .form-group.col-md-12
+                            .input-group.input-group-sm
+                                .input-group-addon 邮　箱
+                                input#email.form-control( type='text' )
+                        .form-group.col-md-12
+                            .input-group.input-group-sm
+                                .input-group-addon 密　码
+                                input#password.form-control( type='text' )
+                        .col-md-12
+                            a.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' ) 　注　册　
         .navbar-header
-            button.navbar-toggle( type='button', data-toggle='collapse', data-target='.navbar-collapse' )
+            button.navbar-toggle( type='button' data-toggle='collapse' data-target='.navbar-collapse' )
                 span.sr-only 展开
                 span.icon-bar
                 span.icon-bar
@@ -17,3 +56,8 @@ header#header.navbar.navbar-default.navbar-enen.navbar-static-top( role='navigat
                     a 测试
                 li
                     a 测试
+            ul.nav.navbar-nav.navbar-right
+                li
+                    button#login-btn.btn.btn-default.navbar-btn.btn-sm( data-toggle='button' ) 登　录
+                li
+                    button#signup-btn.btn.btn-default.navbar-btn.btn-sm( data-toggle='button' ) 注　册
