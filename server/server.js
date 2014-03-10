@@ -44,10 +44,9 @@ module.exports = function( enen ){
 
     if ( config.type === 'development' ) {
         app.use( '/client', express.static( config.root + '/../client' ) );
-        app.use( '/bower_components', express.static( config.root + '/../bower_components' ) );
-    }else{
-        app.use( '/', express.static( config.root + '/../dist' ) );
     }
+    app.use( '/bower_components', express.static( config.root + '/../bower_components' ) );
+    app.use( '/', express.static( config.root + '/../dist' ) );
 
     app.use( function( err, req, res, next ){
         if ( err.message ) {

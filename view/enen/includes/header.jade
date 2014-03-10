@@ -15,7 +15,7 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
                         .form-group.col-md-12
                             a.btn.btn-default.btn-sm( data-toggle='button' ) 记住
                         .col-md-12
-                            input#login-panel-btn.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' type='submit' value='　登　录　' )
+                            input#login-panel-btn.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' type='submit' value='　登　录　' data-loading-text='　登　录　' )
             .row#signup-panel
                 .col-md-3.col-xs-12
                     .row
@@ -33,6 +33,23 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
                                 input.password.form-control( type='password' )
                         .col-md-12
                             a.btn.btn-default.btn-sm.pull-right( href='javascript:' role='button' ) 　注　册　
+            -if( user )
+                .row#user-panel
+                    .col-md-4.col-xs-12
+                        .row
+                            .col-md-4
+                                img.img-thumbnail.img-responsive( src="http://192.168.0.3:83/images/img_0_4_35.jpg" alt="..." )
+                            .col-md-8
+                                .row
+                                    div#user-panel-username-wrap
+                                        h3#user-panel-username.text-right #{ user.username }
+                                    a#logout( href='/logout' ) 退出
+                                p 一些介绍
+                            .col-md-12
+                                p 这里是一些其它内容
+                    .col-md-8
+                        .row
+                            .col-md-12
         .navbar-header
             button.navbar-toggle( type='button' data-toggle='collapse' data-target='.navbar-collapse' )
                 span.sr-only 展开

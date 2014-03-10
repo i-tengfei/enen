@@ -28,7 +28,6 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
                     top: 0
                 } );
             }else{
-                console.log( parseFloat( $header.css( 'margin-top' ) ) )
                 $header.stop( ).animate( {
                     top: -parseFloat( $header.css( 'margin-top' ) ) - $header.height( )
                 } );
@@ -38,15 +37,15 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
 
         $( '#nav-user' ).on( 'click', '#login-btn, #signup-btn, #user-btn', function( event ){
             $( '#login-panel, #signup-panel, #user-panel' ).hide( );
-            switch( event.currentTarget.id ){
+            switch( $( this ).attr( 'id' ) ){
                 case 'login-btn':
-                    $( '#login-panel' ).show( )
+                    $( '#login-panel' ).show( );
                     break;
                 case 'signup-btn':
-                    $( '#signup-panel' ).show( )
+                    $( '#signup-panel' ).show( );
                     break;
-                case 'username-btn':
-                    $( '#user-panel' ).show( )
+                case 'user-btn':
+                    $( '#user-panel' ).show( );
                     break;
             }
             $header.animate( {
@@ -57,7 +56,8 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
         $( '#content' ).on( 'click', hide );
 
         $( '#header-login-form' ).on( 'submit', function( event ){
-            event.stopPropagation( );
+            var btn = $( '#login-panel-btn' ).trigger( 'click' );
+            event.preventDefault( );
             $.ajax( {
                 url: '/login',
                 data: {
@@ -69,7 +69,15 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
             } ).done( function( data ){
                 hide( );
                 $( '#nav-user' ).html( '<button id="user-btn" class="btn btn-default navbar-btn btn-sm">' + data.username + '</button>' );
+            } ).fail( function( data ){
+                alert( data.responseText + ' ( TODO: 弹框待优化 ) ' );
+            } ).always( function( ){
+                btn.button( 'reset' );
             } );
+        } );
+
+        $( 'input[data-loading-text], button[data-loading-text]' ).on( 'click', function ( ) {
+            $( this ).button( 'loading' );
         } );
 
     } );

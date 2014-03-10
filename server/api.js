@@ -34,7 +34,7 @@ module.exports = function ( app, passport ) {
     // ---------- ---------- | Auth | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
     // 登录
-    app.post( '/login', auth.no, function( req, res ) {
+    app.post( '/login', auth.no, function( req, res, next ) {
 
         passport.authenticate( 'local', function( err, user, info ) {
             if( user ){
@@ -43,16 +43,16 @@ module.exports = function ( app, passport ) {
                     res.send( req.user );
                 } );
             }else{
-                res.send( error( 403, '用户名或密码不正确！' ) );
+                next( error( 403, '用户名或密码不正确！' ) );
             }
         } )( req, res );
 
     } );
     // 注册
-    app.post( '/signup', [ auth.no, user.create ], function( req, res ) {
+    app.post( '/signup', [ auth.no, user.create ], function( req, res, next ) {
         req.login( req.result, function( err ){
             holder( err, function( ){
-                res.send( err );
+                next( err );
             }, function( ){
                 res.send( req.user );
             } )
