@@ -17,9 +17,9 @@
                 td
                     a.btn.btn-default.btn-xs( data-toggle='button' ) 选择
                 td
-                    a( href='/code/{{ code._id }}', target='_blank' ) {{ code.title }}
+                    a( href='/code/{{ code.id }}', target='_blank' ) {{ codename( code ) }}
                 td
-                    a( href='/user/{{ code.author._id }}', target='_blank' ) {{ code.author.username }}
+                    a( href='/user/github/{{ code.user.id }}', target='_blank' ) {{ code.user.login }}
                 td
                     .btn-group
                         a.btn.btn-default.btn-xs( href='#{site.dashboard}/code/{{ code._id }}' type='button' ) 修改

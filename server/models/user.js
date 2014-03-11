@@ -12,7 +12,6 @@ var UserSchema = new Schema( {
 
     salt: { type: String, default: '' },
     
-    authToken: { type: String, default: '' },
     baidu: {},
     github: {},
     
@@ -27,7 +26,8 @@ UserSchema.set( 'toJSON',  {
        delete ret.password;
        delete ret.salt;
        delete ret.__v;
-       delete ret.authToken;
+       ret.baidu && ( delete ret.baidu.token );
+       ret.github && ( delete ret.github.token );
        return ret;
     }
 } );
@@ -36,7 +36,7 @@ UserSchema.pre( 'save', function( next ) {
     
     if( !this.username ){
         next( error( 403, '用户名不能为空' ) );
-    }else if( this.authToken ){
+    }else if( ( this.baidu && this.baidu.token ) || ( this.github && this.github.token ) ){
         next( );
     }else if( /[^\w\u4e00-\u9fa5_-]/.test( this.username ) ){
         next( error( 403, '用户名格式不正确' ) );

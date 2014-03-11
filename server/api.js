@@ -4,6 +4,7 @@ var Controller = require( './controllers/controller' ),
     article = Controller( 'article' ),
     picture = Controller( 'picture' ),
     auth = require( './controllers/auth' ),
+    Github = require( 'github-api' ),
     fs = require( 'fs-extra' );
 
 module.exports = function ( app, passport ) {
@@ -118,6 +119,20 @@ module.exports = function ( app, passport ) {
     app.get( '/api/user/:id', user.load, function( req, res ){
         res.send( req.result );
     } );
+    app.get( '/api/user/:id/code', user.load, function( req, res ){
+
+        if( req.result.github ){
+            var github = new Github( {
+                token: req.result.github.token
+            } );
+            github.getUser( ).userGists( req.result.username, function( err, gists ){
+                res.send( gists );
+            } );
+        }else{
+            next( error( 404, '无内容' ) );
+        }
+
+    } );
 
     // ========== ========== =========== ========== ========== //
     // ---------- ---------- | Article | ---------- ---------- //
@@ -147,6 +162,15 @@ module.exports = function ( app, passport ) {
     // 查
     app.get( '/api/article/:id', article.load, function( req, res ){
         res.send( req.result );
+    } );
+
+    // ========== ========== ======== ========== ========== //
+    // ---------- ---------- | Code | ---------- ---------- //
+    // ========== ========== ======== ========== ========== //
+    app.get( '/api/code', [ auth.yes, auth.github ], function( req, res, next ){
+        req.github.getUser( ).userGists( req.user.username, function( err, gists ){
+            res.send( gists );
+        } );
     } );
 
     // ========== ========== =========== ========== ========== //

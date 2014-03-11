@@ -1,3 +1,5 @@
+var Github = require( 'github-api' );
+
 // 作者
 exports.author = function ( req, res, next ){
 
@@ -5,6 +7,20 @@ exports.author = function ( req, res, next ){
         next( );
     }else{
         next( error( 401, '无权限删除' ) );
+    }
+
+};
+
+// Github
+exports.github = function( req, res, next ){
+
+    if( req.user.github ){
+        req.github = req.github || new Github( {
+            token: req.user.github.token
+        } );
+        next( );
+    }else{
+        next( error( 401, '用户尚未绑定Github帐号！' ) );
     }
 
 };

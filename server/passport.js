@@ -48,10 +48,9 @@ passport.use(
         callbackURL: enen.auth.baidu.callbackURL
     },
     function( token, tokenSecret, profile, done ) {
-
-        profile._json.id = profile.id;
-
-        User.findOrCreate( { 'baidu.id': profile.id }, { baidu: profile, username: profile.username, authToken: token }, { upsert: true }, function ( err, user ) {
+        
+        profile.token = token;
+        User.findOrCreate( { 'baidu.id': profile.id }, { baidu: profile, username: profile.username }, { upsert: true }, function ( err, user ) {
             return done( err, user );
         } );
 
@@ -66,8 +65,8 @@ passport.use(
     },
     function( token, tokenSecret, profile, done ) {
 
-        profile._json.id = profile.id;
-        User.findOrCreate( { 'github.id': profile.id }, { github: profile, username: profile.username, authToken: token }, { upsert: true }, function ( err, user ) {
+        profile.token = token;
+        User.findOrCreate( { 'github.id': profile.id }, { github: profile, username: profile.username }, { upsert: true }, function ( err, user ) {
             return done( err, user );
         } );
 

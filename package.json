@@ -21,7 +21,8 @@
     "grunt-contrib-clean": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-less": "~0.8.3",
-    "passport-github": "~0.1.5"
+    "passport-github": "~0.1.5",
+    "github-api": "~0.7.0"
   },
   "scripts": {
     "start": "node server",

@@ -25,6 +25,11 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
             'update': { method: 'PUT' }
         } );
     } ] )
+    .factory( 'CodeModel', [ '$resource', function( $resource ) {
+        return $resource( '/api/code/:id', {
+            'update': { method: 'PUT' }
+        } );
+    } ] )
     .factory( 'ShowModel', [ '$resource', function( $resource ) {
         return $resource( '/api/show/:id', { id: '@_id' }, {
             'update': { method: 'PUT' }
@@ -144,7 +149,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
         };
 
     } ] )
-    .controller( 'CodeListCtrl', [ '$scope', function( $scope ){
+    .controller( 'CodeListCtrl', [ '$scope', 'CodeModel', function( $scope, CodeModel ){
 
         $scope.init = function( ){
             $scope.list( );
@@ -152,10 +157,14 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
 
         $scope.list = function( event ){
             event && $( event.currentTarget ).addClass( 'disabled' );
-            // ArticleModel.query( function( articles ) {
-            //     $scope.articles = articles;
-            //     event && $( event.currentTarget ).removeClass( 'disabled' );
-            // } );
+            CodeModel.query( function( codes ) {
+                $scope.codes = codes;
+                event && $( event.currentTarget ).removeClass( 'disabled' );
+            } );
+        };
+
+        $scope.codename = function( code ){
+            return Object.keys( code.files )[ 0 ];
         };
 
     } ] )
