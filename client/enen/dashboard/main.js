@@ -163,10 +163,6 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
             } );
         };
 
-        $scope.codename = function( code ){
-            return Object.keys( code.files )[ 0 ];
-        };
-
     } ] )
     .controller( 'CodeEditCtrl', [ '$scope', function( $scope ){
 

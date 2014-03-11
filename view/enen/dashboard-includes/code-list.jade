@@ -10,14 +10,15 @@
             tr
                 th.column-select
                     a.btn.btn-default.btn-xs( data-toggle='button' ) 全选
-                th 标题
+                th 文件名
                 th 作者
                 th 操作
             tr( ng-repeat='code in codes' )
                 td
                     a.btn.btn-default.btn-xs( data-toggle='button' ) 选择
                 td
-                    a( href='/code/{{ code.id }}', target='_blank' ) {{ codename( code ) }}
+                    .btn-group-vertical.btn-group-xs
+                        a.btn.btn-default( ng-repeat='(filename, file) in code.files' href='{{file.raw_url}}' target='_blank' ) {{ filename }}
                 td
                     a( href='/user/github/{{ code.user.id }}', target='_blank' ) {{ code.user.login }}
                 td
