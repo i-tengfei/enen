@@ -66,9 +66,19 @@ passport.use(
     function( token, tokenSecret, profile, done ) {
 
         profile.token = token;
-        User.findOrCreate( { 'github.id': profile.id }, { github: profile, username: profile.username }, { upsert: true }, function ( err, user ) {
-            return done( err, user );
+
+        User.findOne( { 'email': profile._json.email }, function( err, result ){
+            if( result ){
+                User.findOrCreate( { '_id': result._id }, { github: profile }, { upsert: true }, function ( err, user ) {
+                    return done( err, user );
+                } );
+            }else{
+                User.findOrCreate( { 'github.id': profile.id }, { github: profile, username: profile.username, email: profile._json.email }, { upsert: true }, function ( err, user ) {
+                    return done( err, user );
+                } );
+            }
         } );
+
 
     }
 ) );
