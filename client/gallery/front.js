@@ -1,4 +1,4 @@
-define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
+define( [ 'jquery', './common' ], function ( $ ) {
 
     $( function( ){
 
@@ -74,10 +74,6 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
             } ).always( function( ){
                 btn.button( 'reset' );
             } );
-        } );
-
-        $( 'input[data-loading-text], button[data-loading-text]' ).on( 'click', function ( ) {
-            $( this ).button( 'loading' );
         } );
 
     } );

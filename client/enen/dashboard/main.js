@@ -1,5 +1,15 @@
-require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route' ], function ( $, CodeMirror, markdown, angular ) {
+require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, CodeMirror, markdown, angular ) {
 
+    // 滚动条
+    $( '#main' ).niceScroll( {
+        cursoropacitymin: 1,
+        mousescrollstep: 50
+    } );
+
+    // 按钮点击
+    $( '#main' ).on( 'click', 'input[data-loading-text], button[data-loading-text], a[data-loading-text]', function ( ) {
+        $( this ).button( 'loading' );
+    } );
 
     // 菜单展开切换
     $( '#menu-toggle' ).on( 'click', function( ){
@@ -26,7 +36,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
         } );
     } ] )
     .factory( 'CodeModel', [ '$resource', function( $resource ) {
-        return $resource( '/api/code/:id', {
+        return $resource( '/api/code/:id', { id: '@id' }, {
             'update': { method: 'PUT' }
         } );
     } ] )
@@ -130,6 +140,7 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
                     $scope.code( article.content );
                 } );
             }
+
         };
 
         $scope.code = function( value ){
@@ -164,9 +175,59 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
         };
 
     } ] )
-    .controller( 'CodeEditCtrl', [ '$scope', function( $scope ){
+    .controller( 'CodeEditCtrl', [ '$scope', 'CodeModel', '$routeParams', function( $scope, CodeModel, $routeParams ){
 
         $scope.init = function( ){
+
+            if( $routeParams.id === 'new' ){
+                // $scope.article = new ArticleModel( );
+                // $scope.code( '' );
+            }else{
+                CodeModel.get( {
+                    id: $routeParams.id
+                } , function( code ) {
+                    $scope.code = code;
+                } );
+            }
+
+        };
+
+        $scope.codemirror = function( filename, file ){
+
+            $scope.codemirrors = {};
+            setTimeout( function( ){
+                $scope.codemirrors[ file.filename ] = new CodeMirror( $( '#filename-' + filename )[ 0 ], {
+                    value: file.content,
+                    mode: file.type,
+                    lineWrapping: true
+                } )
+            } );
+
+        };
+
+        $scope.save = function( event ){
+
+            $scope.code.files = ( function( ){
+
+                var files = {};
+
+                $( '.file' ).each( function( ){
+                    var $fname = $( this ).find( 'input' ),
+                        ofname = $fname.attr( 'filename' );
+                    files[ ofname ] = {
+                        filename: $fname.val( ),
+                        content: $scope.codemirrors[ ofname ].getValue( )
+                    };
+                } );
+
+                return files;
+
+            } )( );
+
+            $scope.code.$save( function( code ){
+                $( event.currentTarget ).button( 'reset' );
+            } );
+
         };
 
     } ] )

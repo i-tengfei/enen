@@ -168,8 +168,23 @@ module.exports = function ( app, passport ) {
     // ---------- ---------- | Code | ---------- ---------- //
     // ========== ========== ======== ========== ========== //
     app.get( '/api/code', [ auth.yes, auth.github ], function( req, res, next ){
-        req.github.getUser( ).userGists( req.user.username, function( err, gists ){
-            res.send( gists );
+        req.github.getUser( ).userGists( req.user.username, function( err, result ){
+            res.send( result );
+        } );
+    } );
+    app.get( '/api/code/:num', [ auth.yes, auth.github ], function( req, res, next ){
+        req.github.getGist( req.params.num ).read( function( err, result ){
+            res.send( result );
+        } );
+    } );
+    // 改
+    app.save( [ 'put', 'post' ], '/api/code/:num', [ auth.yes, auth.github ], function( req, res, next ){
+        req.github.getGist( req.params.num ).update( req.body, function( err, result ){
+            if( err ){
+                res.send( 401, 'Github未返回内容！' );
+            }else{
+                res.send( result );
+            }
         } );
     } );
 

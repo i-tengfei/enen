@@ -34,5 +34,7 @@
       "url": "http://mit-license.org"
     }
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "node-inspector": "~0.7.1"
+  }
 }

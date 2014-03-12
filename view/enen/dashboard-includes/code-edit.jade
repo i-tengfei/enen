@@ -1,7 +1,14 @@
-#edit.panel.panel-default( data-ng-init='init( )' )
-    .panel-body
-        input.form-control#edit-title( type='text', ng-model='code.title' )
-        #codemirror
-    .panel-footer
-        a.btn.btn-default( href='#{site.dashboard}/code' ) 取消
-        a.btn.btn-primary( ng-click='save( $event )' ) 保存
+.row( data-ng-init='init( )' )
+    .col-md-12
+        .form-group
+            textarea.form-control( rows='4' ng-model='code.description' )
+    .col-md-12.file( ng-repeat='(filename, file) in code.files' )
+        .form-group
+            .input-group.input-group-sm
+                .input-group-addon 文件名
+                input.form-control( type='text' value='{{filename}}' filename='{{filename}}' )
+        .form-group
+            .codemirror( id='filename-{{filename.replace(".","-")}}' type='{{file.type}}' ng-init='codemirror( filename.replace(".","-"), file )' )
+    .col-md-12
+        a.btn.btn-default.btn-sm.pull-right( href='#{site.dashboard}/code' ) 返回
+        input.btn.btn-default.btn-sm.pull-right( role='button' type='submit' value='保　存' data-loading-text='保存中' ng-click='save( $event )' )

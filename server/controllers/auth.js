@@ -16,6 +16,7 @@ exports.github = function( req, res, next ){
 
     if( req.user.github ){
         req.github = req.github || new Github( {
+            auth: 'oauth',
             token: req.user.github.token
         } );
         next( );
