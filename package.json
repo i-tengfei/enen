@@ -22,7 +22,10 @@
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-less": "~0.8.3",
     "passport-github": "~0.1.5",
-    "github-api": "~0.7.0"
+    "github-api": "~0.7.0",
+    "gravatar": "~1.0.6",
+    "request": "~2.34.0",
+    "mkdirp": "~0.3.5"
   },
   "scripts": {
     "start": "node server",

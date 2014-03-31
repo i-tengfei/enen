@@ -7,6 +7,7 @@ head
         script( type='text/javascript', src='/bower_components/less/dist/less-1.5.1.min.js', charset='utf-8' )
         script( type='text/javascript', data-main='/client/config', src='/bower_components/requirejs/require.js' )
         script( type='text/javascript' ).
+            localStorage.clear( );// clear LESS cache;
             require( ['#{path}/main.js'] );
     - else
         link( rel='stylesheet', type='text/css', href='#{path}.css' )

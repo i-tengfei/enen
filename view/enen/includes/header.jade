@@ -1,4 +1,5 @@
 header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigation' )
+    #header-background
     .container
         #hidden
             .row#login-panel
@@ -13,7 +14,11 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
                                 .input-group-addon 　密　　码　
                                 input.password.form-control( type='password' )
                         .form-group.col-md-12
-                            a.btn.btn-default.btn-sm( data-toggle='button' ) 记住
+                            .btn-group.btn-group-sm.auth
+                                a.btn.btn-default 快捷登录
+                                a.btn.btn-default( href='/auth/github' )
+                                    i.fa.fa-github
+                            a.btn.btn-default.btn-sm.pull-right( data-toggle='button' ) 记住
                         .col-md-12
                             input#login-panel-btn.btn.btn-default.btn-sm.pull-right( role='button' type='submit' value='　登　录　' data-loading-text='　登　录　' )
             .row#signup-panel
@@ -38,7 +43,7 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
                     .col-md-4.col-xs-12
                         .row
                             .col-md-4
-                                img.img-thumbnail.img-responsive( src="http://192.168.0.3:83/images/img_0_4_35.jpg" alt="..." )
+                                img.img-thumbnail.img-responsive( src='/api/user/#{ user._id }/avatar/100' alt='#{user.username}' )
                             .col-md-8
                                 .row
                                     div#user-panel-username-wrap

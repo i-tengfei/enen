@@ -1,7 +1,24 @@
 extends layouts/page
 block content
     .container
-        ul
-            each article in articles
-                li
-                    a.title( href='/article/#{article._id}' ) #{article.title}
+        .row
+            .col-md-8
+                ul#article-list
+                    each article in articles
+                        li
+                            h3.article-title
+                                a( href='/article/#{article._id}' ) #{article.title}
+                            .article-meta
+                                .author #{article.author.username}
+                                .time #{article.createTime.format( 'yyyy-MM-dd hh:mm' )}
+                            .avatar
+                                .hexagon
+                                    .f.f1
+                                        img( src='/api/user/#{article.author._id}/avatar/40' )
+                                    .f.f2
+                                        img( src='/api/user/#{article.author._id}/avatar/40' )
+                                    .f.f3
+                                        img( src='/api/user/#{article.author._id}/avatar/40' )
+                            .article-content
+                                img( src='' )
+                                p 介绍文字

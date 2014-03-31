@@ -1,1 +1,84 @@
 @import "/client/gallery/front.less";
+
+#article-list{
+    margin: 0 160px 0 0;
+    padding: 0;
+    border-right: 1px solid #E5E5E5;
+
+    li{
+        position: relative;
+        height: 140px;
+        list-style: none;
+
+        .avatar{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: -20px;
+            top: 0;
+        }
+        .article-title{
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+        }
+        .article-meta{
+            position: absolute;
+            right: -160px;
+            padding: 0 10px;
+            top: 0;
+            width: 140px;
+            line-height: 20px;
+            height: 40px;
+        }
+    }
+
+
+    .hexagon{
+        @l: 20px;
+
+        position: relative;
+        width: @l*2;
+        height: @l*2;
+        .f{
+            position: absolute;
+            top: @l/2;
+            left: @l/7.6;
+            width: sqrt( 3 ) * @l;
+            height: @l;
+            overflow: hidden;
+            background: @color1;
+            border-radius: 2px;
+            img{
+                // display: none;
+                position: absolute;
+                top: @l/-2;
+                left: @l/-10;
+            }
+        }
+        .f1{
+            .rotate( 30deg );
+            img{
+                .rotate( -30deg );
+            }
+        }
+        .f2{
+            .rotate( 90deg );
+            img{
+                .rotate( -90deg );
+            }
+        }
+        .f3{
+            .rotate( 150deg );
+            img{
+                .rotate( -150deg );
+            }
+        }
+    }
+
+}
+
+#footer{
+    margin-top: 0;
+}

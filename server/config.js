@@ -4,8 +4,8 @@ var path = require( 'path' ),
 
 var basic = {
     root: path.normalize( __dirname ),
-    cache: path.normalize( __dirname + '/../../cache' ),
-    upload: path.normalize( __dirname + '/../../upload' )
+    cache: path.normalize( __dirname + '/../cache' ),
+    upload: path.normalize( __dirname + '/../upload' )
 };
 
 var config = {

@@ -6,6 +6,14 @@
     margin-top: -@hh;
     height: @hh + 50;
     margin-bottom: -50px;
+    border-bottom: 1px solid #E0E0E0;
+    #header-background{
+        position: absolute;
+        height: @hh;
+        width: 100%;
+        background: url(/picture/bg1.png);
+        box-shadow: 0 0 8px #000 inset;
+    }
 }
 
 #content{
@@ -13,9 +21,8 @@
 }
 
 #hidden{
-    height: @hh - 1;
+    height: @hh;
     padding: 15px 0;
-    border-bottom: 1px solid #E0E0E0;
     #login-panel, #signup-panel, #user-panel{
         display: none;
     }
@@ -36,12 +43,9 @@
     }
 }
 
-
-
 .navbar-enen{
-    background-color: #FFF;
+    background: rgba( 255,255,255,.85 );
     border: 0;
-    box-shadow: 0 0 10px #555;
 
     .navbar-nav {
         font-size: 14px;
@@ -57,8 +61,8 @@
             margin-left: 10px;
         }
     }
-    .navbar-collapse{
-        background: #FFF;
+    .collapsing, .collapse.in{
+        background: rgba( 255,255,255,.85 );
         border-bottom: 1px solid #E0E0E0;
     }
 }
@@ -69,6 +73,10 @@
     line-height: 30px;
     height: 50px;
     padding: 10px;
+}
+
+.auth{
+    margin-right: 10px;
 }
 
 #footer{

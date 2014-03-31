@@ -4,7 +4,7 @@
         .btn-group.btn-group-sm
             a.btn.btn-default( ng-click='list( $event )' ) 刷新
             a.btn.btn-default 删除
-            a.btn.btn-primary( href='#{site.dashboard}/article/new' ) 创建   
+            a.btn.btn-primary( href='#{site.dashboard}/show/new' ) 创建   
     .table-responsive
         table.table.table-hover.table-striped
             tr
@@ -30,7 +30,7 @@
                         a.btn.btn-default /xxx/jquery.js
                 td
                     .btn-group
-                        a.btn.btn-default.btn-xs( href='#{site.dashboard}/article/{{ article._id }}' type='button' ) 修改
-                        a.btn.btn-default.btn-xs( href='javascript:' ng-click='remove( article )' type='button' ) 删除
+                        a.btn.btn-default.btn-xs( href='#{site.dashboard}/show/{{ show._id }}' type='button' ) 修改
+                        a.btn.btn-default.btn-xs( href='javascript:' ng-click='remove( show )' type='button' ) 删除
         .panel-footer
             pagination.pagination-sm( total-items='11', page='page', boundary-links='true', direction-links='false', rotate='false', first-text='首页', last-text='尾页' )

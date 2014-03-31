@@ -98,6 +98,13 @@ require( [ 'jquery', 'codemirror', 'markdown', 'angular', 'angular-bootstrap', '
                 return '/' + params.enen + '-tpl/show-list'
             }
         } )
+        .when( '/:enen/show/:id', {
+            controller: 'ShowEditCtrl',
+            templateUrl: function( params ){
+                navActive( 'show' );
+                return '/' + params.enen + '-tpl/show-edit'
+            }
+        } )
 
     } ] )
     .controller( 'MainCtrl', [ '$scope', function( $scope ) {

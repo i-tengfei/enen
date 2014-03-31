@@ -5,9 +5,13 @@ var Controller = require( './controllers/controller' ),
     picture = Controller( 'picture' ),
     auth = require( './controllers/auth' ),
     Github = require( 'github-api' ),
+    gravatar = require( 'gravatar' ),
+    Cache = require( './cache' ),
     fs = require( 'fs-extra' );
 
 module.exports = function ( app, passport ) {
+
+    var avatarCache = new Cache( config.cache + '/avatar' );
 
     app.save = function( methods, url, middleware, callback ){
         methods.forEach( function( x ){
@@ -132,6 +136,15 @@ module.exports = function ( app, passport ) {
             next( error( 404, '无内容' ) );
         }
 
+    } );
+    app.get( '/api/user/:id/avatar/:size', user.load, function( req, res ){
+        // TODO: cache
+        var size = req.params.size;
+        avatarCache.url( gravatar.url( req.result.email, { s: size, r: 'x', d: 'retro' } ), {
+            name: req.result._id + '-' + size + '.jpg'
+        }, function( err, dir ){
+            res.sendfile( dir );
+        } );
     } );
 
     // ========== ========== =========== ========== ========== //
