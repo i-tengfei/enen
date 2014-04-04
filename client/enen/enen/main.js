@@ -1,4 +1,4 @@
-define( [ 'jquery', 'angular', 'angular-resource', 'angular-route', './common' ], function ( $, angular ) {
+define( [ 'jquery', 'TWEEN', 'coo', 'angular', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, TWEEN, COO, angular ) {
 
     $( function( ){
 
@@ -94,25 +94,106 @@ define( [ 'jquery', 'angular', 'angular-resource', 'angular-route', './common' ]
     
         $locationProvider.html5Mode( true );
         $routeProvider
+        .when( '/', {
+            controller: 'IndexCtrl',
+            templateUrl: function( params ){
+                return '/includes/index'
+            }
+        } )
         .when( '/article', {
             controller: 'ArticleListCtrl',
             templateUrl: function( params ){
-                navActive( 'article' );
-                return '/tpl/article-list'
+                return '/includes/article-list'
             }
         } )
 
     } ] )
+    .controller( 'IndexCtrl', [ '$scope', function( $scope ) {
+
+    } ] )
     .controller( 'ArticleListCtrl', [ '$scope', 'ArticleModel', function( $scope, ArticleModel ) {
+
+        var renderer = new COO.CSS3DRenderer( $( '#article-box' )[ 0 ] );
+
+        var view = new COO.View( {
+            width: 720,
+            height: 1200
+        } );
+
+        view.camera.position.z = 1450 + 360;
+
+        view.setRenderer( renderer );
+
+        var box = new COO.Node( );
+
+        var front = new COO.CSS3D( {
+            element: $( '#front' )[ 0 ] 
+        } );
+        front.position.z = 360;
+
+        var left = new COO.CSS3D( {
+            element: $( '#left' )[ 0 ] 
+        } );
+        left.position.x = 360;
+        left.rotation.y = Math.PI / 2;
+
+        var right = new COO.CSS3D( {
+            element: $( '#right' )[ 0 ] 
+        } );
+        right.position.x = -360;
+        right.rotation.y = Math.PI / 2;
+
+        var back = new COO.CSS3D( {
+            element: $( '#back' )[ 0 ] 
+        } );
+        back.position.z = -360;
+
+        box.add( front, left, right, back );
+        view.add( box );
+
+        // box.position.z = - 180;
+        // setInterval( function( ){
+        //     box.rotation.y += 0.01
+        // } )
+
+        function animate( ) {
+
+            requestAnimationFrame( animate );
+            TWEEN.update( );
+
+        }
+
+        animate( );
+
 
         $scope.init = function( ){
             $scope.list( );
-        }
+        };
 
         $scope.list = function( ) {
             ArticleModel.query( function( articles ) {
                 $scope.articles = articles;
+                $( '#pillar, .article-face' ).height( 200 * articles.length );
+                view.height = 200 * articles.length;
             } );
+        };
+
+        $scope.fy = function( ){
+
+            var fy = new TWEEN.Tween( {v:0} ).to({v:1},500).onUpdate( function( v ){
+                box.position.z = -180 * (1-v);
+            } )
+            var xz = new TWEEN.Tween( {v:0} ).to({v:1},500).onUpdate( function( v ){
+                box.rotation.y = Math.PI * v * 0.5;
+            } ).chain( fy )
+
+            var tween = new TWEEN.Tween( {v:0} )
+                .to( {v:1}, 300 )
+                .onUpdate( function( v ){
+                    box.position.z = -180 * v
+                } )
+                .chain( xz )
+                .start( )
         };
 
     } ] )

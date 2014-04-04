@@ -1,3 +1,7 @@
+mixin list(name,url,t)
+    -var c = ( t === type ? 'active' : '' )
+    li( class=c )
+        a( href=url ) #{name}
 header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigation' )
     #header-background
     .container
@@ -64,14 +68,8 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
             a#name-logo.navbar-brand( href='/' ) 嗯嗯
         .navbar-collapse.collapse
             ul.nav.navbar-nav
-                li
-                    a( href='/show' ) 广场
-                li.active
-                    a( href='/article' ) 文章
-                li
-                    a 测试
-                li
-                    a 测试
+                +list( '广场', '/show', 'show' )
+                +list( '文章', '/article', 'article' )
             ul.nav.navbar-nav.navbar-right#nav-user
                 - if( user ){
                 li

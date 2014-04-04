@@ -13,24 +13,6 @@ module.exports = function ( app ) {
 
     var path = config.type === 'development' ? '/client/' + app.locals.site.view + '/' : '/';
 
-    app.get( '/', function( req, res, next ){
-        
-        article.Model.random( function( err, result ){
-            result.content = markdown.parse( result.content );
-            req.result = result;
-            next( err );
-        } );
-
-    }, function( req, res ){
-
-        res.render( 'index', {
-            path: path + 'index',
-            title: '首页',
-            article: req.result,
-            user: req.user
-        } );
-
-    } );
 
     app.get( '/login', auth.no, function( req, res ){
 
@@ -55,19 +37,27 @@ module.exports = function ( app ) {
         req.result.content = markdown.parse( req.result.content );
         res.render( 'article', _.extend( req.result, {
             path: path + 'article',
-            user: req.user
+            user: req.user,
+            type: 'article'
         } ) );
 
     } );
 
-    app.get( '/article', article.list, function( req, res ){
+    var enen = function( req, res ){
 
-        res.render( 'article-list', {
-            path: path + 'article-list',
-            articles: req.result,
-            title: '文章',
+        res.render( 'enen', {
+            path: path + 'enen',
             user: req.user
         } );
+
+    };
+
+    app.get( '/', enen );
+    app.get( '/article', enen );
+
+    app.get( '/includes/:tpl', function( req, res ){
+
+        res.render( 'includes/' + req.params.tpl );
 
     } );
 

@@ -1,0 +1,25 @@
+.row
+    .col-md-8
+        #pillar
+        #article-box
+            ul#top
+            ul#bottom
+            ul#left.article-face
+            ul#right.article-face
+            ul#back.article-face
+            ul#front.article-face.article-list( data-ng-init='init( )' )
+                li( ng-repeat='article in articles' )
+                    h3.article-title
+                        a( ng-href='/article/{{ article._id }}' ) {{ article.title }}
+                    .article-meta
+                        .author {{ article.author.username }}
+                        .time {{article.createTime.format( 'yyyy-MM-dd hh:mm' )}}
+                    .avatar
+                        .hexagon
+                            .f.f1
+                            .f.f2
+                            .f.f3
+                        img( ng-src='/api/user/{{article.author._id}}/avatar/20' )
+                    .article-content
+                        img( src='' )
+        #next( ng-click='fy()' ) 翻页
