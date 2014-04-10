@@ -34,91 +34,30 @@
     }
 }
 
-@listHeight: 1200px;
-#pillar{
-    height: @listHeight;
-}
-#article-box{
-    position: absolute;
-    top: 0;
-    width: 720px;
-    height: @listHeight;
-}
-#left, #right{
-    background: #F0F0F0;
-}
-#back{
-    background: #CCC;
-}
-#next{
-    margin-top: 60px;
-    height: 40px;
-    line-height: 40px;
-    width: 160px;
-    text-align: center;
-    font-size: 16px;
-    background: #CCC;
-}
-.article-face{
-    position: absolute;
-    top: 0;
-    margin: 0;
+#article-list{
     padding: 0;
-    width: 720px;
-}
-.article-list{
-    background: #FFF;
-
+    margin: 0;
     li{
-        position: relative;
-        height: 200px;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 20px;
         list-style: none;
-        padding: 15px;
 
-        &:hover{
-            background: @color3;
-            .f{
-                background: @color1;
-            }
-        }
-
-        .avatar{
-            position: absolute;
-            width: 40px;
+        .article-avatar{
             height: 40px;
-            right: 140px;
-            top: 15px;
-
+            width: 40px;
+            float: left;
+            display: block;
             img{
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                box-shadow: 0 0 3px #FFF;
-                border-radius: 2px;
+                display: block;
+                border: 0;
             }
         }
         .article-title{
-            height: 30px;
-            line-height: 30px;
-            font-size: 16px;
-            margin: 0 0 10px 0;
-        }
-        .article-meta{
-            position: absolute;
-            right: 5px;
-            padding: 0 10px;
-            top: 15px;
-            width: 140px;
-            line-height: 20px;
             height: 40px;
-        }
-        .article-content{
-            padding-top: 10px;
-            img{
-                width: 200px;
-                height: 120px;
-            }
+            display: block;
+            float: left;
+            padding: 0 0 0 20px;
         }
     }
-
 }

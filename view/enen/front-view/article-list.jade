@@ -1,0 +1,16 @@
+.row
+    .col-md-8
+        ul#article-list
+            li( ng-repeat='article in articles' )
+                a.article-avatar( ng-href='/user/{{article.author._id}}' )
+                    img( ng-src='/api/user/{{article.author._id}}/avatar/40' )
+                a.article-title( ng-href='/article/{{ article._id }}' ) {{ article.title }}
+//                img.thumbnail
+//                h3.article-title
+//                    a( ng-href='/article/{{ article._id }}' ) {{ article.title }}
+//                .article-meta
+//                    .author
+//                        img.avatar( ng-src='/api/user/{{article.author._id}}/avatar/40' )
+//                        .name {{ article.author.username }}
+//
+//                    .time {{article.createTime.format( 'yyyy-MM-dd hh:mm' )}}*/

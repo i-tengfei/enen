@@ -1,4 +1,4 @@
-define( [ 'jquery', 'codemirror.javascript', 'codemirror.python' ], function ( $, CodeMirror ) {
+define( [ 'jquery', 'codemirror.javascript', 'codemirror.python', 'codemirror.shell' ], function ( $, CodeMirror ) {
 
     function code( dom, modle ){
 
@@ -8,7 +8,6 @@ define( [ 'jquery', 'codemirror.javascript', 'codemirror.python' ], function ( $
             readOnly: true,
             value: v,
             modle: modle,
-            theme: 'ambiance',
             lineNumbers: v.indexOf( '\n' ) !== -1,
             lineWrapping: true,
             dragDrop: false,

@@ -1,5 +1,4 @@
 @import (less) "/bower_components/codemirror/lib/codemirror.css";
-@import (less) "/bower_components/codemirror/theme/ambiance.css";
 
 .markdown{
 
@@ -45,6 +44,14 @@
     p{
         line-height: 26px;
         color: #686868;
+
+        code{
+            padding: 2px 8px;
+            background: #FFF;
+            border-radius: 2px;
+            border: 1px solid #CCC;
+            color: #333;
+        }
     }
 
     a{
@@ -68,13 +75,6 @@
         border-left: 3px solid #CCC;
     }
 
-    p code{
-        padding: 1px 8px;
-        background: #272822;
-        border-radius: 2px;
-        color: #FFB795;
-    }
-
     table{
         tr{
             td{
@@ -86,31 +86,105 @@
     pre{
         background-color: none;
         border: 0;
-        margin: 0;
+        margin: 15px 0;
         padding: 0;
     }
 
-    .CodeMirror{
-        border-radius: 2px;
-        background: #272822;
-        box-shadow: none;
-        font-size: 14px;
-        padding-left: 4px;
-    }
-    .CodeMirror-gutters{
-        background: none;
-        padding-right: 5px;
-        color: #CCC;
-    }
-    .CodeMirror-linenumber{
-        color: #666;
-    }
     .CodeMirror {
+        border-radius: 2px;
+        border: 1px solid #CCC;
+        line-height: 1.5em;
+        font-size: .85em;
+        font-family: "Monaco", "Andale Mono", "Lucida Console", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+        background: #fff;
         height: auto;
+
+        *{
+            box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+        }
+
+        pre{
+            margin: 0 10px;
+        }
     }
-    .CodeMirror-scroll {
-        overflow-y: hidden;
-        overflow-x: auto;
+    .CodeMirror-code{
+        padding: 10px 0;
+    }
+
+    .CodeMirror-gutter-elt {
+        z-index: 20;
+    }
+
+    .CodeMirror-gutter-elt .CodeMirror-line-error {
+        color: #FF4D4D;
+        cursor: help;
+        height: 100%;
+        padding: 0 3px;
+    }
+
+    .CodeMirror-error-tooltip {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+        font-size: 13px;
+        opacity: .95;
+        line-height: 1.4em;
+        padding: 10px;
+        max-width: 300px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        z-index: 20;
+        border: solid 1px #ACB3B9;
+    }
+
+    .CodeMirror-error-tooltip:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        margin-left: -6px;
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        border-top: 6px solid #838383;
+    }
+
+    .CodeMirror-focused .CodeMirror-selected {
+        background: #B4D5FF;
+    }
+
+    .CodeMirror-focused .CodeMirror-matchhighlight {
+        border: solid 1px #a5c3e9;
+        border-radius: 3px;
+        margin-left: -1px;
+        margin-right: -1px;
+    }
+    .CodeMirror-gutters {
+        background: none;
+    }
+
+    .CodeMirror-linenumber {
+        padding: 1px 8px 0;
+        line-height: 1.5em;
+        min-width: 20px;
+        color: #999;
+        font-family: Helvetica;
+        font-size: .9em;
+    }
+
+    .activeline {
+        background: #e8f2ff !important;
+    }
+
+    div.CodeMirror span.CodeMirror-matchingbracket {
+        color: #67d73e;
+    }
+
+    div.CodeMirror span.CodeMirror-nonmatchingbracket {
+        color: #f22;
     }
     
 }

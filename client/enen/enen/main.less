@@ -1,14 +1,21 @@
 @import "/client/gallery/common.less";
+@import "/client/gallery/markdown.less";
 @import "index.less";
 @import "article-list.less";
 
 @hh: 180px;
+@BGC: #FAF6F4;
+
+body{
+    background: @BGC;
+}
 
 #header{
     margin-top: -@hh;
     height: @hh + 50;
     margin-bottom: -50px;
     border-bottom: 1px solid #E0E0E0;
+    background: @BGC;
     #header-background{
         position: absolute;
         height: @hh;
@@ -46,7 +53,6 @@
 }
 
 .navbar-enen{
-    background: rgba( 255,255,255,.85 );
     border: 0;
 
     .navbar-nav {
@@ -75,8 +81,9 @@
         }
     }
     .collapsing, .collapse.in{
-        background: rgba( 255,255,255,.85 );
+        background: @BGC;
         border-bottom: 1px solid #E0E0E0;
+        border-top: 0;
     }
 }
 

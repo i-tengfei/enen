@@ -1,4 +1,4 @@
-define( [ 'jquery', 'TWEEN', 'coo', 'angular', 'angular-resource', 'angular-route', 'client/gallery/common' ], function ( $, TWEEN, COO, angular ) {
+require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-resource', 'angular-route', 'angular-sanitize', 'client/gallery/common' ], function ( $, angular, markdown, code ) {
 
     $( function( ){
 
@@ -83,10 +83,11 @@ define( [ 'jquery', 'TWEEN', 'coo', 'angular', 'angular-resource', 'angular-rout
         } );
 
     } );
-    
 
-    // Angular
-    angular.module( 'enen', [ 'ngResource', 'ngRoute' ] )
+    // ---------- ---------- ---------- ---------- //
+    //                   Angular
+    // ---------- ---------- ---------- ---------- //
+    angular.module( 'enen', [ 'ngResource', 'ngRoute', 'ngSanitize' ] )
     .factory( 'ArticleModel', [ '$resource', function( $resource ) {
         return $resource( '/api/article/:id', { id: '@_id' } );
     } ] )
@@ -96,107 +97,69 @@ define( [ 'jquery', 'TWEEN', 'coo', 'angular', 'angular-resource', 'angular-rout
         $routeProvider
         .when( '/', {
             controller: 'IndexCtrl',
-            templateUrl: function( params ){
-                return '/includes/index'
-            }
+            title: '敬请期待',
+            templateUrl: '/front-view/index'
         } )
         .when( '/article', {
             controller: 'ArticleListCtrl',
-            templateUrl: function( params ){
-                return '/includes/article-list'
-            }
+            resolve: {
+                articles: [ '$q', 'ArticleModel', function( $q, ArticleModel ){
+
+                    var deferred = $q.defer( );
+
+                    ArticleModel.query( function( articles ) {
+                        deferred.resolve( articles );
+                    } );
+
+                    return deferred.promise;
+
+                } ]
+            },
+            title: '文章',
+            templateUrl: '/front-view/article-list'
+        } )
+        .when( '/article/:id', {
+            controller: 'ArticleCtrl',
+            resolve: {
+                article: [ '$q', '$route', '$rootScope', 'ArticleModel', function( $q, $route, $rootScope, ArticleModel ){
+
+                    var deferred = $q.defer( );
+
+                    ArticleModel.get( {
+                        id: $route.current.params.id
+                    }, function( article ) {
+                        $rootScope.title = article.title;
+                        article.content = markdown( article.content );
+                        deferred.resolve( article );
+                    } );
+
+                    return deferred.promise;
+
+                } ]
+            },
+            title: '文章',
+            templateUrl: '/front-view/article'
         } )
 
     } ] )
-    .controller( 'IndexCtrl', [ '$scope', function( $scope ) {
-
+    .controller( 'IndexCtrl', [ '$scope', function ( $scope ) {} ] )
+    .controller( 'ArticleListCtrl', [ '$scope', 'articles', function ( $scope, articles ) {
+        $scope.articles = articles;
     } ] )
-    .controller( 'ArticleListCtrl', [ '$scope', 'ArticleModel', function( $scope, ArticleModel ) {
-
-        var renderer = new COO.CSS3DRenderer( $( '#article-box' )[ 0 ] );
-
-        var view = new COO.View( {
-            width: 720,
-            height: 1200
-        } );
-
-        view.camera.position.z = 1450 + 360;
-
-        view.setRenderer( renderer );
-
-        var box = new COO.Node( );
-
-        var front = new COO.CSS3D( {
-            element: $( '#front' )[ 0 ] 
-        } );
-        front.position.z = 360;
-
-        var left = new COO.CSS3D( {
-            element: $( '#left' )[ 0 ] 
-        } );
-        left.position.x = 360;
-        left.rotation.y = Math.PI / 2;
-
-        var right = new COO.CSS3D( {
-            element: $( '#right' )[ 0 ] 
-        } );
-        right.position.x = -360;
-        right.rotation.y = Math.PI / 2;
-
-        var back = new COO.CSS3D( {
-            element: $( '#back' )[ 0 ] 
-        } );
-        back.position.z = -360;
-
-        box.add( front, left, right, back );
-        view.add( box );
-
-        // box.position.z = - 180;
-        // setInterval( function( ){
-        //     box.rotation.y += 0.01
-        // } )
-
-        function animate( ) {
-
-            requestAnimationFrame( animate );
-            TWEEN.update( );
-
-        }
-
-        animate( );
-
-
-        $scope.init = function( ){
-            $scope.list( );
-        };
-
-        $scope.list = function( ) {
-            ArticleModel.query( function( articles ) {
-                $scope.articles = articles;
-                $( '#pillar, .article-face' ).height( 200 * articles.length );
-                view.height = 200 * articles.length;
-            } );
-        };
-
-        $scope.fy = function( ){
-
-            var fy = new TWEEN.Tween( {v:0} ).to({v:1},500).onUpdate( function( v ){
-                box.position.z = -180 * (1-v);
-            } )
-            var xz = new TWEEN.Tween( {v:0} ).to({v:1},500).onUpdate( function( v ){
-                box.rotation.y = Math.PI * v * 0.5;
-            } ).chain( fy )
-
-            var tween = new TWEEN.Tween( {v:0} )
-                .to( {v:1}, 300 )
-                .onUpdate( function( v ){
-                    box.position.z = -180 * v
-                } )
-                .chain( xz )
-                .start( )
-        };
-
+    .controller( 'ArticleCtrl', [ '$scope', 'article', function ( $scope, article ) {
+        $scope.article = article;
+        setTimeout( function( ){
+            code( );
+        }, 100 )
     } ] )
+    .run( [ '$rootScope', '$route', function( $rootScope, $route ){
+        
+        $rootScope.$on( '$routeChangeSuccess', function( currentRoute, previousRoute ){
+            $rootScope.title = $route.current.title;
+            $( 'html' ).getNiceScroll( ).resize( );
+        } );
+
+    } ] );
 
     // requirejs的加载执行顺序与angular解析顺序有冲突，我们自己初始化
     angular.element( document ).ready( function( ) {

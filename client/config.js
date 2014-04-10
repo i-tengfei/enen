@@ -3,7 +3,6 @@ require.config( {
     baseUrl: '/',
     paths: {
         'components': 'bower_components',
-        'coo': 'bower_components/coo/build/coo',
         'jquery': 'bower_components/jquery/dist/jquery',
         'codemirror': 'bower_components/codemirror/lib/codemirror',
         'codemirror.dialog': 'bower_components/codemirror/addon/dialog/dialog',
@@ -17,9 +16,9 @@ require.config( {
         'angular-route': 'bower_components/angular-route/angular-route',
         'angular-resource': 'bower_components/angular-resource/angular-resource',
         'angular-bootstrap': 'bower_components/angular-bootstrap/ui-bootstrap-tpls',
+        'angular-sanitize': 'bower_components/angular-sanitize/angular-sanitize',
         'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
-        'jquery.nicescroll': 'bower_components/jquery.nicescroll/jquery.nicescroll',
-        'TWEEN': 'bower_components/tweenjs/src/Tween'
+        'jquery.nicescroll': 'bower_components/jquery.nicescroll/jquery.nicescroll'
     },
     shim: {
         'codemirror': {
@@ -61,6 +60,10 @@ require.config( {
             exports: 'angular'
         },
         'angular-route': {
+            deps: [ 'angular' ],
+            exports: 'angular'
+        },
+        'angular-sanitize': {
             deps: [ 'angular' ],
             exports: 'angular'
         },

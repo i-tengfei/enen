@@ -24,7 +24,7 @@ var config = {
     production: _.extend( {
 
         type: 'production',
-        port: process.env.ENEN_PORT || 8001,
+        port: process.env.ENEN_PORT || 8008,
         ip: process.env.ENEN_IP,
         db: fs.existsSync( __dirname + '/database.production' ) ? fs.readFileSync( __dirname + '/database.production', 'utf8' ).trim( ) : ''
 
