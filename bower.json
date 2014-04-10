@@ -2,7 +2,7 @@
   "name": "blog",
   "dependencies": {
     "requirejs": "*",
-    "jquery": "~1.10.2",
+    "jquery": "~2.1.1",
     "less": "~1.5.1",
     "codemirror": "~3.20.0",
     "marked": "~0.3.0",
