@@ -1,10 +1,11 @@
 @import "/client/gallery/common.less";
 @import "/client/gallery/markdown.less";
 @import "index.less";
+@import "article.less";
 @import "article-list.less";
 
 @hh: 180px;
-@BGC: #FAF6F4;
+@BGC: #F5F5F5;
 
 body{
     background: @BGC;
@@ -14,8 +15,8 @@ body{
     margin-top: -@hh;
     height: @hh + 50;
     margin-bottom: -50px;
-    border-bottom: 1px solid #E0E0E0;
-    background: @BGC;
+    color:#FFF;
+    background: #333;
     #header-background{
         position: absolute;
         height: @hh;
@@ -61,8 +62,12 @@ body{
             a{
                 height: 26px;
                 line-height: 26px;
-                margin: 12px 5px;
-                padding: 0 8px;
+                margin: 12px 0;
+                padding: 0 15px;
+                color: #FFF;
+                &:hover{
+                    color: #FFF;
+                }
             }
         }
         .active{
@@ -93,6 +98,15 @@ body{
     line-height: 30px;
     height: 50px;
     padding: 10px;
+    color: #FFF;
+}
+
+#nav-cursor{
+    position: absolute;
+    height: 3px;
+    bottom: 0;
+    width: 0;
+    background: #FFF;
 }
 
 .auth{
@@ -106,6 +120,7 @@ body{
     color: #777;
     text-align: center;
     .container{
+        padding: 10px 0;
         border-top: 1px solid #E5E5E5;
     }
 }

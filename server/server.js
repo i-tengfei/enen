@@ -1,7 +1,15 @@
 var express = require( 'express' ),
+
+    compress = require( 'compression' ),
+    session = require( 'express-session' ),
+    cookieParser = require( 'cookie-parser' ),
+    bodyParser = require( 'body-parser' ),
+    morgan  = require( 'morgan' ),
+
     passport = require( './passport' ),
-    mongoStore = require( 'connect-mongo' )( express ),
-    MemStore = express.session.MemoryStore;
+
+    mongoStore = require( 'connect-mongo' )( session ),
+    MemStore = session.MemoryStore;
 
 module.exports = function( enen ){
 
@@ -11,53 +19,34 @@ module.exports = function( enen ){
     app.set( 'views', config.root + '/../view/' + enen.site.view );
     app.set( 'view engine', 'jade' );
 
-    app.locals( enen );
+    app.locals = enen;
     
-    app.use( express.compress( ) );
-    app.use( express.cookieParser( ) );
-    app.use( express.json( ) );
-    app.use( express.urlencoded( ) );
-    app.use( express.methodOverride( ) );
+    app.use( compress( ) );     // 压缩
+    app.use( cookieParser( ) ); // Cookie
+    app.use( bodyParser( ) );   // Body
 
     if( config.type === 'development' ){
-        app.use( express.logger( 'dev' ) );
-        app.use( express.session( {
+
+        app.use( morgan( { format: 'dev', immediate: true } ) );       // Logger
+        app.use( session( {
             secret: 'secret_key',
             store: MemStore( { reapInterval: 60000 * 10 } ) } 
         ) );
-    }else{        
-        app.use( express.session( {
+
+    }else{
+
+        app.use( session( {
             secret: 'qazwsx',
             store: new mongoStore( {
                 url: config.db,
                 collection : 'sessions'
             } )
         } ) );
+
     }
 
     app.use( passport.initialize( ) );
     app.use( passport.session( ) );
-
-    app.use( app.router );
-
-    app.use( express.static( config.root + '/../public' ) );
-
-    if ( config.type === 'development' ) {
-        app.use( '/client', express.static( config.root + '/../client' ) );
-    }
-    app.use( '/bower_components', express.static( config.root + '/../bower_components' ) );
-    app.use( '/', express.static( config.root + '/../dist' ) );
-
-    app.use( function( err, req, res, next ){
-        if ( err.message ) {
-            // TODO: 不同的错误页面
-            res.send( err.message, err.msg );
-        }
-    } );
-
-    app.use( function( req, res, next ){
-        res.send( 404 );
-    } );
 
     app.param( function( name, fn ){
         if ( fn instanceof RegExp ) {
@@ -78,6 +67,25 @@ module.exports = function( enen ){
 
     require( './api' )( app, passport );
     require( './router' )( app );
+
+    app.use( express.static( config.root + '/../public' ) );
+
+    if ( config.type === 'development' ) {
+        app.use( '/client', express.static( config.root + '/../client' ) );
+    }
+    app.use( '/bower_components', express.static( config.root + '/../bower_components' ) );
+    app.use( '/', express.static( config.root + '/../dist' ) );
+
+    app.use( function( err, req, res, next ){
+        if ( err.message ) {
+            // TODO: 不同的错误页面
+            res.send( err.message, err.msg );
+        }
+    } );
+
+    app.use( function( req, res, next ){
+        res.send( 404 );
+    } );
 
     config.ip ? app.listen( config.port, config.ip ) : app.listen( config.port );
 

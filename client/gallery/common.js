@@ -6,7 +6,6 @@ define( [ 'jquery', 'bootstrap', 'jquery.nicescroll' ], function ( $ ) {
             $( this ).button( 'loading' );
         } );
 
-
     } );
 
 } );

@@ -82,6 +82,25 @@ require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-reso
             } );
         } );
 
+        // 头部游标
+        function setCursorPos( w, l ){        
+            var logo = $( '#name-logo' );
+            $( '#nav-cursor' ).css( {
+                width: w || logo.width( ),
+                left: l || logo.offset( ).left + parseInt( logo.css( 'paddingLeft' ) )
+            } );
+        }
+        setCursorPos( );
+        $( '.navbar-nav li a' ).on( 'mouseenter', function( event ){
+            var btn = $( event.currentTarget );
+            setCursorPos( 
+                btn.width( ) + 10,
+                btn.offset( ).left + parseInt( btn.css( 'paddingLeft' ) ) - 5
+            )
+        } ).on( 'mouseleave', function( event ){
+            setCursorPos( );
+        } )
+
     } );
 
     // ---------- ---------- ---------- ---------- //
@@ -98,6 +117,7 @@ require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-reso
         .when( '/', {
             controller: 'IndexCtrl',
             title: '敬请期待',
+            type: 'index',
             templateUrl: '/front-view/index'
         } )
         .when( '/article', {
@@ -116,6 +136,7 @@ require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-reso
                 } ]
             },
             title: '文章',
+            type: 'article-list',
             templateUrl: '/front-view/article-list'
         } )
         .when( '/article/:id', {
@@ -138,6 +159,7 @@ require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-reso
                 } ]
             },
             title: '文章',
+            type: 'article',
             templateUrl: '/front-view/article'
         } )
 
@@ -156,6 +178,7 @@ require( [ 'jquery', 'angular', 'markdown', 'client/gallery/code', 'angular-reso
         
         $rootScope.$on( '$routeChangeSuccess', function( currentRoute, previousRoute ){
             $rootScope.title = $route.current.title;
+            $rootScope.type = $route.current.type;
             $( 'html' ).getNiceScroll( ).resize( );
         } );
 

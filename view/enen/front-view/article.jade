@@ -1,8 +1,8 @@
 .row
-    .col-xs-12.col-md-8
+    .col-md-12
         h1 {{article.title}}
 .row
-    .col-xs-12.col-md-8.article-meta 作者：{{article.author.username}}
+    .col-md-12.article-meta 作者：{{article.author.username}}
 .row
-    .col-xs-12.col-md-8
+    .col-md-12
         .article.markdown( ng-bind-html='article.content' )

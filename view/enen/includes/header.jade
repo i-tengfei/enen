@@ -1,6 +1,5 @@
 mixin list(name,url,t)
-    -var c = ( t === type ? 'active' : '' )
-    li( class=c )
+    li( ng-class='{active:(#{t}==type)}' )
         a( href=url ) #{name}
 header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigation' )
     #header-background
@@ -66,10 +65,11 @@ header#header.navbar.navbar-default.navbar-enen.navbar-fixed-top( role='navigati
                 span.icon-bar
                 span.icon-bar
             a#name-logo.navbar-brand( href='/' ) 嗯嗯
+            #nav-cursor
         .navbar-collapse.collapse
             ul.nav.navbar-nav
                 +list( '广场', '/show', 'show' )
-                +list( '文章', '/article', 'article' )
+                +list( '文章', '/article', 'article-list' )
             ul.nav.navbar-nav.navbar-right#nav-user
                 - if( user ){
                 li
